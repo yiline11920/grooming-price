@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東森寵物美容報價</title>
+    <style>
+        body { 
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; 
+            padding: 20px; 
+            
+            /* 馬卡龍漸層底色 + 似顏繪風格(狗/貓/鼠/鳥)背景 */
+            background-color: #fce4ec; 
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3C!-- 貓 (粉色) --%3E%3Cg transform='translate(40, 50) scale(1.2)'%3E%3Cpath d='M-15,-10 L-20,-30 L-5,-20 Z' fill='%23ffb7b2' stroke='%23e59a96' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M15,-10 L20,-30 L5,-20 Z' fill='%23ffb7b2' stroke='%23e59a96' stroke-width='2' stroke-linejoin='round'/%3E%3Cellipse cx='0' cy='0' rx='25' ry='20' fill='%23ffb7b2' stroke='%23e59a96' stroke-width='2'/%3E%3Ccircle cx='-10' cy='-2' r='2.5' fill='%23555'/%3E%3Ccircle cx='10' cy='-2' r='2.5' fill='%23555'/%3E%3Cellipse cx='-15' cy='5' rx='4' ry='2' fill='%23ff99a8' opacity='0.8'/%3E%3Cellipse cx='15' cy='5' rx='4' ry='2' fill='%23ff99a8' opacity='0.8'/%3E%3Cpath d='M-5,5 Q0,10 5,5' fill='none' stroke='%23555' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='2' r='1.5' fill='%23e59a96'/%3E%3Cpath d='M-25,0 L-35,-2 M-25,5 L-35,7 M25,0 L35,-2 M25,5 L35,7' stroke='%23555' stroke-width='1' opacity='0.4'/%3E%3C/g%3E%3C!-- 狗 (黃色) --%3E%3Cg transform='translate(220, 230) scale(1.3)'%3E%3Cpath d='M-20,-5 C-35,10 -30,30 -20,25 C-15,20 -10,10 -15,-5 Z' fill='%23ffdf91' stroke='%23e5c882' stroke-width='2'/%3E%3Cpath d='M20,-5 C35,10 30,30 20,25 C15,20 10,10 15,-5 Z' fill='%23ffdf91' stroke='%23e5c882' stroke-width='2'/%3E%3Cpath d='M-25,0 C-25,-20 25,-20 25,0 C30,20 -30,20 -25,0 Z' fill='%23ffdf91' stroke='%23e5c882' stroke-width='2'/%3E%3Ccircle cx='-10' cy='-2' r='2.5' fill='%23555'/%3E%3Ccircle cx='10' cy='-2' r='2.5' fill='%23555'/%3E%3Ccircle cx='-18' cy='8' r='3.5' fill='%23ffb7b2' opacity='0.9'/%3E%3Ccircle cx='18' cy='8' r='3.5' fill='%23ffb7b2' opacity='0.9'/%3E%3Cellipse cx='0' cy='5' rx='4' ry='3' fill='%238b5a2b'/%3E%3Cpath d='M0,8 L0,12 M-5,10 Q0,15 5,10' fill='none' stroke='%238b5a2b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/g%3E%3C!-- 鼠 (紫色) --%3E%3Cg transform='translate(230, 70) scale(1)'%3E%3Ccircle cx='-15' cy='-15' r='10' fill='%23cbaacb' stroke='%23b595b5' stroke-width='2'/%3E%3Ccircle cx='-15' cy='-15' r='5' fill='%23ffb7b2'/%3E%3Ccircle cx='15' cy='-15' r='10' fill='%23cbaacb' stroke='%23b595b5' stroke-width='2'/%3E%3Ccircle cx='15' cy='-15' r='5' fill='%23ffb7b2'/%3E%3Ccircle cx='0' cy='0' r='22' fill='%23cbaacb' stroke='%23b595b5' stroke-width='2'/%3E%3Cellipse cx='0' cy='8' rx='12' ry='10' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='-8' cy='-2' r='2' fill='%23555'/%3E%3Ccircle cx='8' cy='-2' r='2' fill='%23555'/%3E%3Ccircle cx='-14' cy='4' r='3' fill='%23ff99a8' opacity='0.8'/%3E%3Ccircle cx='14' cy='4' r='3' fill='%23ff99a8' opacity='0.8'/%3E%3Ccircle cx='0' cy='3' r='1.5' fill='%23ffb7b2'/%3E%3Cpath d='M0,4.5 L0,7 M-3,6 Q0,9 3,6' fill='none' stroke='%23555' stroke-width='1' stroke-linecap='round'/%3E%3C/g%3E%3C!-- 鳥 (薄荷綠) --%3E%3Cg transform='translate(70, 230) scale(1.1)'%3E%3Cpath d='M-15,10 L-30,25 L-25,10 Z' fill='%23a8e6cf' stroke='%2396ceb9' stroke-width='2' stroke-linejoin='round'/%3E%3Cellipse cx='0' cy='0' rx='20' ry='18' fill='%23a8e6cf' stroke='%2396ceb9' stroke-width='2'/%3E%3Cpath d='M-5,0 Q-15,15 5,10 Q0,5 -5,0 Z' fill='%23b2e2f2' stroke='%2396ceb9' stroke-width='1.5'/%3E%3Ccircle cx='8' cy='-5' r='2' fill='%23555'/%3E%3Ccircle cx='14' cy='0' r='2.5' fill='%23ff99a8' opacity='0.8'/%3E%3Cpath d='M18,-2 L25,-1 L18,2 Z' fill='%23ffdf91' stroke='%23e5c882' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M-5,-16 Q-10,-25 0,-22' fill='none' stroke='%2396ceb9' stroke-width='2' stroke-linecap='round'/%3E%3C/g%3E%3C!-- 裝飾點綴 --%3E%3Cg fill='%23ffdf91' opacity='0.7'%3E%3Ccircle cx='150' cy='150' r='4'/%3E%3Ccircle cx='100' cy='100' r='2'/%3E%3Ccircle cx='200' cy='100' r='3'/%3E%3Ccircle cx='100' cy='200' r='2.5'/%3E%3Cpath d='M150,40 L153,47 L160,50 L153,53 L150,60 L147,53 L140,50 L147,47 Z' fill='%23fff'/%3E%3Cpath d='M50,150 L52,154 L56,156 L52,158 L50,162 L48,158 L44,156 L48,154 Z' fill='%23fff'/%3E%3Cpath d='M250,180 L252,183 L256,184 L252,185 L250,188 L248,185 L244,184 L248,183 Z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(135deg, #fce4ec 0%, #e0f7fa 50%, #fff9c4 100%);
+            background-attachment: fixed;
+            
+            color: #333; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .quote-container { 
+            width: 100%;
+            max-width: 500px; 
+            
+            /* 調整為半透明毛玻璃特效，透出可愛的背景 */
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15); 
+            box-sizing: border-box;
+        }
+        h2 { 
+            text-align: center; 
+            color: #003366; /* 藏藍色 */
+            border-bottom: 2px dashed #f8bbd0; 
+            padding-bottom: 15px; 
+            margin-top: 0;
+            margin-bottom: 25px; 
+        }
+        .form-group { margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 8px; color: #555; }
+        
+        select, input[type="number"] { 
+            width: 100%; 
+            padding: 12px; 
+            font-size: 16px; 
+            border-radius: 8px; 
+            border: 1px solid #ddd; 
+            background-color: #fff; 
+            box-sizing: border-box; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        input[type="number"] { cursor: text; }
+        select:focus, input[type="number"]:focus { 
+            outline: none; 
+            border-color: #d81b60; 
+            box-shadow: 0 0 5px rgba(216, 27, 96, 0.3); 
+        }
+        
+        .result-box { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background-color: #fff0f5; 
+            border-radius: 10px; 
+            border-left: 6px solid #d81b60; 
+            transition: all 0.3s ease;
+        }
+        .info-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            font-size: 16px; 
+            align-items: center; 
+        }
+        .badge { 
+            background-color: #d81b60; 
+            color: white; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            transition: all 0.3s ease;
+        }
+        .badge.warning { background-color: #ff9800; } 
+        
+        .price-section { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 20px; 
+            gap: 15px; 
+        }
+        .price-card { 
+            flex: 1; 
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            text-align: center; 
+            border: 1px solid #f8bbd0; 
+            transition: transform 0.2s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(216, 27, 96, 0.1);
+        }
+        .price-card h4 { margin: 0 0 10px 0; color: #888; font-size: 15px; }
+        .price-card .amount { color: #d81b60; font-size: 24px; font-weight: bold; }
+        
+        .addon-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .addon-tag { 
+            background: #ffe0e9; 
+            color: #d81b60; 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            display: flex; 
+            align-items: center; 
+            border: 1px solid #f8bbd0; 
+            animation: fadeIn 0.3s ease;
+        }
+        .addon-tag button { 
+            background: none; 
+            border: none; 
+            color: #d81b60; 
+            margin-left: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            padding: 0; 
+            font-size: 16px; 
+            line-height: 1; 
+            transition: color 0.2s;
+        }
+        .addon-tag button:hover { color: #c2185b; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quote-container">
+    <h2>🐾 東森寵物美容報價 🐾</h2>
+    
+    <div class="form-group">
+        <label for="breed">1. 快速選擇品種：</label>
+        <select id="breed" onchange="updateFromBreed()">
+            <option value="">-- 請選擇毛孩品種 --</option>
+            <optgroup label="【短毛犬】">
+                <option value="短毛吉娃娃">短毛吉娃娃</option>
+                <option value="迷你品">迷你品</option>
+                <option value="短毛臘腸">短毛臘腸</option>
+                <option value="巴哥">巴哥</option>
+                <option value="波士頓梗">波士頓梗</option>
+                <option value="傑克羅素">傑克羅素</option>
+                <option value="法鬥">法鬥 / 英鬥</option>
+                <option value="惡霸犬">惡霸犬</option>
+                <option value="牛頭梗">牛頭梗</option>
+                <option value="比特犬">比特犬</option>
+                <option value="米克斯">米克斯 (短毛)</option>
+                <option value="拉不拉多">拉不拉多</option>
+                <option value="杜賓">杜賓</option>
+                <option value="高山犬">高山犬</option>
+            </optgroup>
+            <optgroup label="【中長毛犬】">
+                <option value="博美">博美 / 狐狸</option>
+                <option value="雪納瑞">雪納瑞</option>
+                <option value="西高地">西高地</option>
+                <option value="長毛臘腸">長毛臘腸</option>
+                <option value="約克夏 (中長毛)">約克夏 (中長毛)</option>
+                <option value="柴犬">柴犬 / 柯基 / 喜樂蒂</option>
+                <option value="黃金獵犬">黃金獵犬 / 秋田 / 鬆獅</option>
+                <option value="哈士奇">哈士奇</option>
+                <option value="長毛米克斯">長毛米克斯</option>
+                <option value="邊境牧羊犬">邊境牧羊犬</option>
+            </optgroup>
+            <optgroup label="【長毛犬】">
+                <option value="瑪爾濟斯">瑪爾濟斯</option>
+                <option value="貴賓">貴賓</option>
+                <option value="比熊">比熊</option>
+                <option value="西施">西施</option>
+                <option value="約克夏 (長毛)">約克夏 (長毛)</option>
+            </optgroup>
+            <optgroup label="【短毛貓】">
+                <option value="米克斯短毛貓">米克斯短毛貓</option>
+                <option value="英國短毛貓">英國短毛貓 (英短)</option>
+                <option value="美國短毛貓">美國短毛貓 (美短)</option>
+                <option value="曼赤肯">曼赤肯 (短腿貓)</option>
+                <option value="俄羅斯藍貓">俄羅斯藍貓</option>
+                <option value="豹貓">豹貓</option>
+                <option value="加菲貓">加菲貓 (異國短毛貓)</option>
+            </optgroup>
+            <optgroup label="【長毛貓】">
+                <option value="米克斯長毛貓">米克斯長毛貓</option>
+                <option value="英國長毛貓">英國長毛貓</option>
+                <option value="布偶貓">布偶貓</option>
+                <option value="波斯貓">波斯貓</option>
+                <option value="緬因貓">緬因貓</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="lengthCm">2. 輸入毛孩體長 (公分)：</label>
+        <input type="number" id="lengthCm" oninput="calculatePrice()" placeholder="例如：35" min="1">
+    </div>
+
+    <div class="form-group">
+        <label for="addonSelect">3. 選擇加購與單項服務 (可複選)：</label>
+        <select id="addonSelect" onchange="addAddon()">
+            <option value="">-- 請選擇加購項目 --</option>
+            <optgroup label="【單項服務】">
+                <option value="剪指甲">剪指甲</option>
+                <option value="腳底毛">腳底毛</option>
+                <option value="清耳朵">清耳朵</option>
+                <option value="拔耳毛">拔耳毛</option>
+                <option value="剃肚子毛">剃肚子毛</option>
+                <option value="剃肛門毛">剃肛門毛</option>
+                <option value="肛門腺">肛門腺</option>
+                <option value="口腔護理">口腔護理</option>
+                <option value="足部護理">足部護理</option>
+            </optgroup>
+            <optgroup label="【加購護理/SPA】">
+                <option value="薑接spa">薑接spa</option>
+                <option value="深層皮脂清潔">深層皮脂清潔</option>
+                <option value="驅蚤 犬用/貓用">驅蚤 犬用/貓用</option>
+                <option value="尤加利洗/養護">尤加利洗/養護</option>
+                <option value="喜馬拉雅岩鹽">喜馬拉雅岩鹽</option>
+                <option value="椰子碳酸錠淋浴">椰子碳酸錠淋浴</option>
+                <option value="護膚寶(犬.喵)">護膚寶(犬.喵)</option>
+                <option value="安紅抗癢">安紅抗癢</option>
+                <option value="口腔+足部護理優惠">口腔+足部護理優惠</option>
+                <option value="乳酸碳酸錠+護毛優惠套組">乳酸碳酸錠+護毛優惠套組</option>
+            </optgroup>
+            <optgroup label="【造型加價】">
+                <option value="貴賓腳">貴賓腳</option>
+                <option value="貴賓臉">貴賓臉</option>
+                <option value="腳靴">腳靴</option>
+                <option value="腳柱">腳柱</option>
+                <option value="腳球">腳球</option>
+                <option value="頭部修剪">頭部修剪</option>
+                <option value="拆結">拆結</option>
+                <option value="手吹">手吹</option>
+                <option value="特殊造型">特殊造型</option>
+            </optgroup>
+        </select>
+        <div id="addonTags" class="addon-tags"></div>
+    </div>
+
+    <div class="result-box">
+        <div class="info-row">
+            <span>毛髮判定：</span>
+            <span id="hairBadge" class="badge warning">請先選擇品種</span>
+        </div>
+        <div class="info-row">
+            <span>體型判定：</span>
+            <span id="sizeBadge" class="badge warning">請輸入體長</span>
+        </div>
+        <div class="info-row" id="addonTotalRow" style="display:none;">
+            <span>加購總計：</span>
+            <span id="addonTotalBadge" class="badge">+$ 0</span>
+        </div>
+        
+        <div class="price-section">
+            <div class="price-card">
+                <h4>✨ 洗澡・精緻</h4>
+                <div id="priceBasic" class="amount">$ 0</div>
+            </div>
+            <div class="price-card">
+                <h4>👑 洗澡・尊爵</h4>
+                <div id="pricePremium" class="amount">$ 0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 更新品種資料庫
+    const breedData = {
+        "短毛吉娃娃": { hair: "short", defaultSize: "small" },
+        "迷你品": { hair: "short", defaultSize: "small" },
+        "短毛臘腸": { hair: "short", defaultSize: "med_small" },
+        "巴哥": { hair: "short", defaultSize: "med_small" },
+        "波士頓梗": { hair: "short", defaultSize: "med_small" },
+        "傑克羅素": { hair: "short", defaultSize: "med_small" },
+        "法鬥": { hair: "short", defaultSize: "medium" },
+        "惡霸犬": { hair: "short", defaultSize: "medium" },
+        "牛頭梗": { hair: "short", defaultSize: "medium" },
+        "比特犬": { hair: "short", defaultSize: "medium" },
+        "米克斯": { hair: "short", defaultSize: "medium" },
+        "拉不拉多": { hair: "short", defaultSize: "large" },
+        "杜賓": { hair: "short", defaultSize: "large" },
+        "高山犬": { hair: "short", defaultSize: "large" },
+        
+        "博美": { hair: "med_long", defaultSize: "med_small" },
+        "雪納瑞": { hair: "med_long", defaultSize: "med_small" },
+        "西高地": { hair: "med_long", defaultSize: "med_small" },
+        "長毛臘腸": { hair: "med_long", defaultSize: "med_small" },
+        "約克夏 (中長毛)": { hair: "med_long", defaultSize: "small" },
+        "柴犬": { hair: "med_long", defaultSize: "medium" },
+        "黃金獵犬": { hair: "med_long", defaultSize: "large" },
+        "哈士奇": { hair: "med_long", defaultSize: "large" },
+        "長毛米克斯": { hair: "med_long", defaultSize: "medium" },
+        "邊境牧羊犬": { hair: "med_long", defaultSize: "med_large" },
+        
+        "瑪爾濟斯": { hair: "long", defaultSize: "small" },
+        "貴賓": { hair: "long", defaultSize: "med_small" },
+        "比熊": { hair: "long", defaultSize: "med_small" },
+        "西施": { hair: "long", defaultSize: "med_small" },
+        "約克夏 (長毛)": { hair: "long", defaultSize: "small" },
+        
+        "米克斯短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        "英國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        "美國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        "曼赤肯": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        "俄羅斯藍貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        "豹貓": { hair: "short", defaultSize: "cat_medium", species: "cat" },
+        "加菲貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+        
+        "米克斯長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+        "英國長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+        "布偶貓": { hair: "long", defaultSize: "cat_medium", species: "cat" },
+        "波斯貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+        "緬因貓": { hair: "long", defaultSize: "cat_large", species: "cat" }
+    };
+
+    const averageLengthMap = {
+        "small": 22,        
+        "med_small": 32,    
+        "medium": 42,       
+        "med_large": 52,    
+        "large": 62,        
+        "giant": 72,        
+        "super_giant": 85,
+        "cat_small": 22,
+        "cat_medium": 32,
+        "cat_large": 45
+    };
+
+    const priceMatrix = {
+        "small": { "short": [350, 650], "med_long": [400, 700], "long": [450, 750] },
+        "med_small": { "short": [400, 700], "med_long": [450, 750], "long": [500, 800] },
+        "medium": { "short": [500, 950], "med_long": [600, 1000], "long": [700, 1100] },
+        "med_large": { "short": [700, 1100], "med_long": [800, 1200], "long": [1000, 1300] },
+        "large": { "short": [1000, 1500], "med_long": [1100, 1600], "long": [1300, 1800] },
+        "giant": { "short": [1200, 1700], "med_long": [1500, 2000], "long": [2000, 2500] },
+        "super_giant": { "short": [1500, 2100], "med_long": [2000, 2500], "long": [2500, 3200] },
+        
+        // 貓咪專屬價格矩陣
+        "cat_small": { "short": [700, 1200], "med_long": [800, 1300], "long": [800, 1300] },
+        "cat_medium": { "short": [1000, 1200], "med_long": [1200, 1400], "long": [1200, 1400] },
+        "cat_large": { "short": [1200, 1600], "med_long": [1400, 1800], "long": [1400, 1800] }
+    };
+
+    const hairLabels = { "short": "短毛", "med_long": "中長毛", "long": "長毛" };
+    
+    const sizeLabels = {
+        "small": "犬・小型 (25cm↓)",
+        "med_small": "犬・中小型 (26-35cm)",
+        "medium": "犬・中型 (36-45cm)",
+        "med_large": "犬・中大型 (46-55cm)",
+        "large": "犬・大型 (56-65cm)",
+        "giant": "犬・巨型 (66-75cm)",
+        "super_giant": "犬・特大型 (76cm↑)",
+        "cat_small": "貓・小型 (25cm↓)",
+        "cat_medium": "貓・中型 (26-40cm)",
+        "cat_large": "貓・大型 (41cm↑)"
+    };
+
+    function getAddonPrice(addonName, sizeCategory) {
+        // 判斷體型級距
+        const isMedium = sizeCategory === "medium";
+        const isMedLarge = sizeCategory === "med_large";
+        const isLargeOrAbove = ["large", "giant", "super_giant"].includes(sizeCategory);
+        const isMedLargeOrAbove = isMedLarge || isLargeOrAbove;
+        const isMediumOrAbove = isMedium || isMedLargeOrAbove;
+
+        // 1. 全體型固定價格的項目
+        if (["拆結", "特殊造型"].includes(addonName)) return 100;
+        if (addonName === "口腔+足部護理優惠") return 129;
+
+        // 2. 基礎單項服務
+        const basicSingleItems = ["剪指甲", "腳底毛", "清耳朵", "拔耳毛", "剃肚子毛", "肛門腺", "口腔護理", "足部護理"];
+        if (basicSingleItems.includes(addonName)) {
+            return isLargeOrAbove ? 150 : 100;
+        }
+
+        // 3. 剃肛門毛
+        if (addonName === "剃肛門毛") {
+            return isMedLargeOrAbove ? 100 : 50;
+        }
+
+        // 4. SPA與護理
+        const standardCareItems = [
+            "深層皮脂清潔", "驅蚤 犬用/貓用", "尤加利洗/養護", 
+            "喜馬拉雅岩鹽", "護膚寶(犬.喵)", "安紅抗癢"
+        ];
+        if (standardCareItems.includes(addonName)) {
+            if (isLargeOrAbove) return 200;
+            if (isMedLarge) return 150;
+            return 100;
+        }
+
+        // 5. 特定加價洗浴、SPA
+        if (addonName === "薑接spa") {
+            if (isLargeOrAbove) return 500; // 大型犬以上調整為 500
+            if (isMediumOrAbove) return 400;
+            return 300;
+        }
+        if (addonName === "椰子碳酸錠淋浴") {
+            if (isLargeOrAbove) return 300;
+            if (isMediumOrAbove) return 200;
+            return 150;
+        }
+        if (addonName === "乳酸碳酸錠+護毛優惠套組") {
+            if (isLargeOrAbove) return 299;
+            if (isMediumOrAbove) return 239;
+            return 199;
+        }
+
+        // 6. 基礎造型加價
+        const standardStylingItems = ["貴賓腳", "貴賓臉", "腳靴", "頭部修剪"];
+        if (standardStylingItems.includes(addonName)) {
+            if (isLargeOrAbove) return 200;
+            if (isMediumOrAbove) return 150;
+            return 100;
+        }
+
+        // 7. 進階造型與其他加價 (腳柱、腳球、手吹)
+        if (addonName === "腳柱") {
+            if (isLargeOrAbove) return 350;
+            if (isMedLarge) return 250;
+            if (isMedium) return 200;
+            return 150;
+        }
+        if (addonName === "腳球") {
+            if (isLargeOrAbove) return 250;
+            if (isMedLarge) return 150;
+            return 100;
+        }
+        if (addonName === "手吹") {
+            if (isLargeOrAbove) return 300;
+            if (isMedLarge) return 200;
+            if (isMedium) return 150;
+            return 100;
+        }
+
+        return 0;
+    }
+
+    let currentHairType = "";
+    let currentSpecies = "dog"; // 追蹤目前是狗還是貓
+    let selectedAddons = [];
+
+    function addAddon() {
+        const select = document.getElementById("addonSelect");
+        const val = select.value;
+        if (val && !selectedAddons.includes(val)) {
+            selectedAddons.push(val);
+            calculatePrice();
+        }
+        select.value = ""; 
+    }
+
+    function removeAddon(val) {
+        selectedAddons = selectedAddons.filter(item => item !== val);
+        calculatePrice();
+    }
+
+    function renderAddons(sizeCategory) {
+        const container = document.getElementById("addonTags");
+        container.innerHTML = "";
+        selectedAddons.forEach(val => {
+            const price = getAddonPrice(val, sizeCategory);
+            const tag = document.createElement("div");
+            tag.className = "addon-tag";
+            tag.innerHTML = `${val} (+$${price}) <button onclick="removeAddon('${val}')">×</button>`;
+            container.appendChild(tag);
+        });
+    }
+
+    function getSizeCategoryByCm(cm, species) {
+        if (species === "cat") {
+            if (cm <= 25) return "cat_small";
+            if (cm <= 40) return "cat_medium";
+            return "cat_large";
+        }
+        
+        if (cm <= 25) return "small";
+        if (cm <= 35) return "med_small";
+        if (cm <= 45) return "medium";
+        if (cm <= 55) return "med_large";
+        if (cm <= 65) return "large";
+        if (cm <= 75) return "giant";
+        return "super_giant";
+    }
+
+    function updateFromBreed() {
+        const breedSelect = document.getElementById("breed").value;
+        
+        if (!breedSelect) {
+            currentHairType = "";
+            currentSpecies = "dog";
+            document.getElementById("hairBadge").innerText = "請先選擇品種";
+            document.getElementById("hairBadge").className = "badge warning";
+            document.getElementById("lengthCm").value = "";
+            calculatePrice();
+            return;
+        }
+
+        const data = breedData[breedSelect];
+        currentHairType = data.hair;
+        currentSpecies = data.species || "dog";
+        
+        const hairBadge = document.getElementById("hairBadge");
+        hairBadge.innerText = hairLabels[currentHairType];
+        hairBadge.className = "badge"; 
+        
+        document.getElementById("lengthCm").value = averageLengthMap[data.defaultSize];
+
+        calculatePrice();
+    }
+
+    function calculatePrice() {
+        const cmInput = document.getElementById("lengthCm").value;
+        const sizeBadge = document.getElementById("sizeBadge");
+        
+        // 決定當前體型 (區分貓狗)
+        let cm = parseInt(cmInput);
+        let sizeCategory = (cm > 0) ? getSizeCategoryByCm(cm, currentSpecies) : (currentSpecies === "cat" ? "cat_small" : "small");
+
+        // 動態更新下拉選單中的價格文字
+        const select = document.getElementById("addonSelect");
+        for (let i = 0; i < select.options.length; i++) {
+            const option = select.options[i];
+            const val = option.value;
+            if (val) {
+                option.text = `${val} (+$${getAddonPrice(val, sizeCategory)})`;
+            }
+        }
+
+        // 重新渲染標籤以確保顯示正確價格
+        renderAddons(sizeCategory);
+
+        // 計算加購金額總計
+        const addonTotal = selectedAddons.reduce((sum, item) => sum + getAddonPrice(item, sizeCategory), 0);
+        const addonTotalRow = document.getElementById("addonTotalRow");
+        if (addonTotal > 0) {
+            addonTotalRow.style.display = "flex";
+            document.getElementById("addonTotalBadge").innerText = `+$ ${addonTotal}`;
+        } else {
+            addonTotalRow.style.display = "none";
+        }
+
+        if (!currentHairType || !cmInput || cmInput <= 0) {
+            document.getElementById("priceBasic").innerText = `$ ${addonTotal.toLocaleString()}`;
+            document.getElementById("pricePremium").innerText = `$ ${addonTotal.toLocaleString()}`;
+            sizeBadge.innerText = "請輸入有效體長";
+            sizeBadge.className = "badge warning";
+            return;
+        }
+
+        sizeBadge.innerText = sizeLabels[sizeCategory];
+        sizeBadge.className = "badge"; 
+        
+        const prices = priceMatrix[sizeCategory][currentHairType];
+        
+        // 將基本報價加上加購金額
+        const finalBasic = prices[0] + addonTotal;
+        const finalPremium = prices[1] + addonTotal;
+        
+        document.getElementById("priceBasic").innerText = `$ ${finalBasic.toLocaleString()}`;
+        document.getElementById("pricePremium").innerText = `$ ${finalPremium.toLocaleString()}`;
+    }
+
+    // 初始化時呼叫一次，讓選單載入預設的選項與價格
+    window.onload = function() {
+        calculatePrice();
+    };
+</script>
+
+</body>
+</html>
