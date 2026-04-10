@@ -435,7 +435,7 @@
 <div class="intro-wrap">
 
     <div class="intro-hero">
-        <div class="tag">2025 門市標準化工具</div>
+        <div class="tag">2026 門市標準化工具</div>
         <h1>東森寵物美容<br>統一報價系統</h1>
         <p>解決各門市報價不一致問題<br>減少顧客投訴，提升服務品質</p>
     </div>
@@ -583,7 +583,8 @@
     <!-- STEP 2 -->
     <div class="card">
         <div class="card-label">STEP 2 ／ 輸入體長（公分）</div>
-        <input type="number" id="lengthCm" oninput="calculatePrice()" placeholder="例如：35（背部量到尾根）" min="1">
+        <div style="font-size:12px; color:#888; margin-bottom:10px;">📏 測量方式：前胸（胸骨）→ 屁股（坐骨）</div>
+        <input type="number" id="lengthCm" oninput="calculatePrice()" placeholder="例如：35（前胸胸骨 → 屁股坐骨）" min="1">
     </div>
 
     <!-- STEP 3 -->
@@ -665,8 +666,8 @@
 
     <div class="tip-card red">
         <h4>⚠️ 報價前必確認：體長測量方式</h4>
-        <p>從頸背量至尾根（不含尾巴），趴姿測量。<br>
-        同一品種體型差異大時，以實測為主，不可只憑品種判斷。</p>
+        <p>從<strong>前胸（胸骨）量至屁股（坐骨）</strong>，不含頭頸與尾巴。<br>
+        站姿或自然趴姿皆可，同一品種體型差異大時，以實測為準，不可只憑品種判斷。</p>
     </div>
 
     <div class="tip-card gold">
