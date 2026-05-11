@@ -3,1035 +3,875 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東森寵物美容｜報價系統</title>
+    <title>東森寵物美容｜標準化報價系統 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-
-        :root {
-            --brand: #003366;
-            --accent: #d81b60;
-            --soft: #fce4ec;
-            --mint: #e0f7fa;
-            --gold: #f9a825;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-            --text: #1a1a2e;
-            --muted: #666;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, #e8f4fd 0%, #fce4ec 50%, #fff9e6 100%);
-            min-height: 100vh;
-            color: var(--text);
+            background-color: #f8fafc;
+            color: #1e293b;
         }
-
-        /* ─── TABS ─── */
-        .tab-bar {
-            display: flex;
-            background: var(--brand);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,51,102,0.3);
+        .tab-active {
+            border-bottom: 3px solid #d81b60;
+            color: #d81b60;
         }
-        .tab-btn {
-            flex: 1;
-            padding: 16px 8px;
-            border: none;
-            background: transparent;
-            color: rgba(255,255,255,0.6);
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            letter-spacing: 0.5px;
+        .gradient-bg {
+            background: linear-gradient(135deg, #003366 0%, #00509d 100%);
         }
-        .tab-btn.active {
-            color: #fff;
-            border-bottom-color: var(--gold);
-            background: rgba(255,255,255,0.08);
-        }
-        .tab-btn:hover { color: #fff; }
-
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; }
-
-        /* ─── INTRO PANEL ─── */
-        .intro-wrap {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 32px 20px 60px;
-        }
-        .intro-hero {
-            background: var(--brand);
-            border-radius: 20px;
-            padding: 36px 28px;
-            color: white;
-            text-align: center;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        .intro-hero::before {
-            content: "🐾";
-            position: absolute;
-            font-size: 140px;
-            opacity: 0.07;
-            right: -20px;
-            top: -10px;
-        }
-        .intro-hero .tag {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--brand);
-            font-size: 11px;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-        }
-        .intro-hero h1 {
-            font-size: 26px;
-            font-weight: 900;
-            line-height: 1.3;
-            margin-bottom: 12px;
-        }
-        .intro-hero p {
-            font-size: 14px;
-            opacity: 0.8;
-            line-height: 1.7;
-        }
-
-        .problem-box {
-            background: #fff3e0;
-            border-left: 5px solid #f57c00;
-            border-radius: 12px;
-            padding: 20px 22px;
-            margin-bottom: 20px;
-        }
-        .problem-box h3 {
-            color: #e65100;
-            font-size: 15px;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-        .problem-box li {
-            color: #555;
-            font-size: 13px;
-            line-height: 2;
-            list-style: none;
-            padding-left: 4px;
-        }
-        .problem-box li::before { content: "⚠️ "; }
-
-        .solution-box {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,51,102,0.08);
-        }
-        .solution-box h3 {
-            color: var(--brand);
-            font-size: 15px;
-            font-weight: 900;
-            margin-bottom: 14px;
-        }
-        .step-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        .step-num {
-            width: 30px;
-            height: 30px;
-            background: var(--brand);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 900;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .step-text strong {
-            display: block;
-            font-size: 14px;
-            color: var(--brand);
-            margin-bottom: 2px;
-        }
-        .step-text span {
-            font-size: 12px;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .cta-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: all 0.2s;
-            letter-spacing: 0.5px;
-            box-shadow: 0 6px 20px rgba(216,27,96,0.3);
-        }
-        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(216,27,96,0.35); }
-
-        /* ─── QUOTE PANEL ─── */
-        .quote-wrap {
-            max-width: 540px;
-            margin: 0 auto;
-            padding: 28px 20px 60px;
-        }
-
-        .quote-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .quote-header h2 {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--brand);
-        }
-        .quote-header p {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 4px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-        .card-label {
-            font-size: 11px;
-            font-weight: 900;
-            color: var(--muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        select, input[type="number"] {
-            width: 100%;
-            padding: 13px 14px;
-            font-family: inherit;
-            font-size: 15px;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 10px;
-            background: var(--gray);
-            color: var(--text);
-            transition: all 0.2s;
-            cursor: pointer;
-            appearance: none;
+        /* 隱藏原生 Number input 箭頭 */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
             -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
+            margin: 0;
         }
-        input[type="number"] {
-            background-image: none;
-            cursor: text;
-        }
-        select:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: var(--accent);
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(216,27,96,0.1);
-        }
-
-        .addon-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; min-height: 10px; }
         .addon-tag {
-            background: #ffe0e9;
-            color: var(--accent);
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid #f8bbd0;
-            animation: popIn 0.2s ease;
+            animation: fadeIn 0.2s ease-out;
         }
-        .addon-tag button {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 16px;
-            line-height: 1;
-            padding: 0;
-            font-weight: bold;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.85); }
-            to { opacity: 1; transform: scale(1); }
+        /* 針對 iOS 的優化 */
+        select, input {
+            font-size: 16px !important;
         }
-
-        /* Result */
-        .result-card {
-            background: var(--brand);
-            border-radius: 20px;
-            padding: 24px;
-            color: white;
-            margin-top: 8px;
-        }
-        .result-badges {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .rbadge {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.25);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        .rbadge.warn {
-            background: rgba(249,168,37,0.25);
-            border-color: rgba(249,168,37,0.5);
-            color: var(--gold);
-        }
-        .cat-note {
-            display: none;
-            background: rgba(216,27,96,0.2);
-            border: 1px solid rgba(216,27,96,0.4);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 12px;
-            margin-bottom: 16px;
-            color: #ffb3c6;
-            text-align: center;
-            font-weight: 700;
-        }
-        .price-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .price-item {
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-        }
-        .price-item .pl { font-size: 11px; opacity: 0.7; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
-        .price-item .pv { font-size: 26px; font-weight: 900; color: var(--gold); }
-        .addon-total-row {
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.08);
-            border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 14px;
-            font-size: 13px;
-        }
-        .addon-total-row span:last-child {
-            font-weight: 900;
-            color: #a5d6f5;
-        }
-
-        /* ─── TIPS PANEL ─── */
-        .tips-wrap {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 28px 20px 60px;
-        }
-        .tips-wrap h2 {
-            font-size: 19px;
-            font-weight: 900;
-            color: var(--brand);
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        .tip-card {
-            background: white;
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--brand);
-        }
-        .tip-card.red { border-left-color: var(--accent); }
-        .tip-card.gold { border-left-color: var(--gold); }
-        .tip-card.green { border-left-color: #43a047; }
-        .tip-card h4 {
-            font-size: 14px;
-            font-weight: 900;
-            color: var(--brand);
-            margin-bottom: 8px;
-        }
-        .tip-card.red h4 { color: var(--accent); }
-        .tip-card.gold h4 { color: #e65100; }
-        .tip-card.green h4 { color: #2e7d32; }
-        .tip-card p, .tip-card li {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.8;
-            list-style: none;
-        }
-        .tip-card li::before { content: "✓ "; color: #43a047; font-weight: 700; }
-
-        .tip-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            margin-top: 6px;
-        }
-        .tip-table th {
-            background: var(--brand);
-            color: white;
-            padding: 9px 12px;
-            text-align: center;
-            font-weight: 700;
-        }
-        .tip-table td {
-            padding: 9px 12px;
-            border-bottom: 1px solid #f0f0f0;
-            text-align: center;
-            color: #444;
-        }
-        .tip-table tr:nth-child(even) td { background: #fafafa; }
-        .tip-table tr:last-child td { border-bottom: none; }
     </style>
 </head>
-<body>
+<body class="pb-10">
 
-<!-- TAB BAR -->
-<div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('intro')">📋 會報說明</button>
-    <button class="tab-btn" onclick="switchTab('quote')">🐾 報價工具</button>
-    <button class="tab-btn" onclick="switchTab('tips')">📌 使用指引</button>
-</div>
+    <!-- 頂部導覽 -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b">
+        <div class="flex justify-around">
+            <button onclick="switchTab('intro')" id="tab-btn-intro" class="tab-btn py-4 px-2 text-sm font-bold transition-all tab-active">
+                📋 系統說明
+            </button>
+            <button onclick="switchTab('quote')" id="tab-btn-quote" class="tab-btn py-4 px-2 text-sm font-bold transition-all text-gray-500">
+                🐾 報價工具
+            </button>
+            <button onclick="switchTab('tips')" id="tab-btn-tips" class="tab-btn py-4 px-2 text-sm font-bold transition-all text-gray-500">
+                📌 門市規範
+            </button>
+        </div>
+    </nav>
 
-<!-- ══════════════════════════════════════
-     TAB 1 ─ 會報說明
-══════════════════════════════════════ -->
-<div id="tab-intro" class="tab-panel active">
-<div class="intro-wrap">
+    <!-- 主內容區 -->
+    <main class="max-w-xl mx-auto px-4 mt-6">
 
-    <div class="intro-hero">
-        <div class="tag">2026 門市標準化工具</div>
-        <h1>東森寵物美容<br>統一報價系統</h1>
-        <p>解決各門市報價不一致問題<br>減少顧客投訴，提升服務品質</p>
-    </div>
-
-    <div class="problem-box">
-        <h3>🚨 目前遇到的問題</h3>
-        <ul>
-            <li>各門市報價標準不統一，顧客產生比較投訴</li>
-            <li>新進員工不熟悉體型分級，報錯價格</li>
-            <li>貓咪與狗報價邏輯不同，容易混淆</li>
-            <li>加購項目手動計算容易出錯</li>
-        </ul>
-    </div>
-
-    <div class="solution-box">
-        <h3>✅ 報價工具如何解決</h3>
-        <div class="step-row">
-            <div class="step-num">1</div>
-            <div class="step-text">
-                <strong>選品種，自動判斷毛髮類型</strong>
-                <span>短毛／中長毛／長毛自動帶入，不需背表格</span>
+        <!-- ════════ TAB 1: 說明 ════════ -->
+        <section id="tab-intro" class="tab-content space-y-6">
+            <div class="gradient-bg rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-yellow-400 text-blue-900 text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-wider">Official 2026</span>
+                    <h1 class="text-3xl font-black mt-3 leading-tight">東森寵物美容<br>標準化報價系統</h1>
+                    <p class="mt-2 text-blue-100 text-sm opacity-90">統一報價邏輯，減少溝通爭議，提升門市專業形象。</p>
+                </div>
+                <div class="absolute -right-4 -bottom-4 opacity-10 transform rotate-12">
+                    <svg width="160" height="160" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                </div>
             </div>
-        </div>
-        <div class="step-row">
-            <div class="step-num">2</div>
-            <div class="step-text">
-                <strong>輸入體長，自動算出體型級距</strong>
-                <span>從小型到特大型共 7 個級距，貓咪另有專屬計算</span>
+
+            <div class="bg-orange-50 border-l-4 border-orange-500 p-5 rounded-r-2xl">
+                <h3 class="text-orange-800 font-bold text-lg mb-2 flex items-center">
+                    <span class="mr-2">⚠️</span> 門市痛點分析
+                </h3>
+                <ul class="text-sm text-orange-700 space-y-2">
+                    <li>• 不同門市對同一品種報價不一，導致客怨。</li>
+                    <li>• 對「體型級距」認知有落差（如：偏胖的柴犬算中型還是中大型？）。</li>
+                    <li>• 貓咪與狗的服務邏輯（手吹費、美容項目）容易混淆。</li>
+                </ul>
             </div>
-        </div>
-        <div class="step-row">
-            <div class="step-num">3</div>
-            <div class="step-text">
-                <strong>勾選加購，即時顯示含加購總價</strong>
-                <span>精緻班與尊爵班同時顯示，透明報價不漏項</span>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                <h3 class="font-bold text-blue-900 border-b pb-2">✨ 系統核心功能</h3>
+                <div class="grid grid-cols-1 gap-4 text-sm text-gray-600">
+                    <div class="flex gap-3">
+                        <div class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">1</div>
+                        <p><strong>智能品種識別：</strong> 自動判定短/中/長毛類型，省去查表麻煩。</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">2</div>
+                        <p><strong>精確體型分級：</strong> 輸入「前胸到坐骨」公分數，自動對應 7 階級距。</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center shrink-0 font-bold">3</div>
+                        <p><strong>防錯邏輯保護：</strong> 選擇貓咪時，自動禁用不適用的美容項目（如貴賓臉）。</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="step-row">
-            <div class="step-num">4</div>
-            <div class="step-text">
-                <strong>貓咪自動切換邏輯</strong>
-                <span>不適用貓咪的造型項目自動反灰，防止誤報</span>
+
+            <button onclick="switchTab('quote')" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-black py-4 rounded-2xl shadow-lg transition-transform active:scale-95">
+                進入報價工具 →
+            </button>
+        </section>
+
+        <!-- ════════ TAB 2: 報價工具 ════════ -->
+        <section id="tab-quote" class="tab-content hidden space-y-4">
+            <!-- Step 1 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest block mb-2">Step 1 / 選擇品種</label>
+                <select id="breed" onchange="handleBreedChange()" class="w-full p-3 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-pink-500 focus:outline-none transition-all">
+                    <option value="">── 請搜尋或選擇毛孩品種 ──</option>
+                    <optgroup label="🐶 【短毛犬】">
+                        <option value="短毛吉娃娃">短毛吉娃娃</option>
+                        <option value="迷你品">迷你品</option>
+                        <option value="短毛臘腸">短毛臘腸</option>
+                        <option value="巴哥">巴哥 (建議手吹)</option>
+                        <option value="波士頓梗">波士頓梗 (建議手吹)</option>
+                        <option value="傑克羅素">傑克羅素</option>
+                        <option value="法鬥">法鬥 / 英鬥 (建議手吹)</option>
+                        <option value="惡霸犬">惡霸犬 (建議手吹)</option>
+                        <option value="牛頭梗">牛頭梗</option>
+                        <option value="比特犬">比特犬</option>
+                        <option value="米格魯">米格魯</option>
+                        <option value="巴吉度">巴吉度</option>
+                        <option value="短毛米克斯">米克斯 (短毛)</option>
+                        <option value="拉不拉多">拉不拉多</option>
+                        <option value="羅威納">羅威納</option>
+                        <option value="大麥町">大麥町</option>
+                        <option value="杜賓">杜賓</option>
+                        <option value="高山犬">高山犬</option>
+                        <option value="大丹">大丹</option>
+                        <option value="中國冠毛犬">中國冠毛犬</option>
+                    </optgroup>
+                    <optgroup label="🐶 【中長毛犬】">
+                        <option value="博美">博美 / 狐狸</option>
+                        <option value="雪納瑞">雪納瑞</option>
+                        <option value="西高地">西高地</option>
+                        <option value="長毛臘腸">長毛臘腸</option>
+                        <option value="長毛吉娃娃">長毛吉娃娃</option>
+                        <option value="北京犬">北京犬 (建議手吹)</option>
+                        <option value="查理士">查理士 (建議手吹)</option>
+                        <option value="可卡犬">可卡犬</option>
+                        <option value="柴犬">柴犬 / 柯基 / 喜樂蒂</option>
+                        <option value="長毛米克斯">長毛米克斯</option>
+                        <option value="邊境牧羊犬">邊境牧羊犬</option>
+                        <option value="薩摩耶">薩摩耶</option>
+                        <option value="哈士奇">哈士奇</option>
+                        <option value="黃金獵犬">黃金獵犬 / 秋田 / 鬆獅</option>
+                        <option value="德國狼犬">德國狼犬</option>
+                        <option value="古代牧羊犬">古代牧羊犬</option>
+                        <option value="可麗牧羊犬">可麗牧羊犬</option>
+                        <option value="大白熊">大白熊</option>
+                        <option value="伯恩山">伯恩山</option>
+                        <option value="阿拉斯加">阿拉斯加</option>
+                        <option value="高加索">高加索</option>
+                        <option value="獒犬">獒犬</option>
+                        <option value="聖伯納">聖伯納</option>
+                    </optgroup>
+                    <optgroup label="🐶 【長毛犬】">
+                        <option value="瑪爾濟斯">瑪爾濟斯</option>
+                        <option value="貴賓">貴賓</option>
+                        <option value="比熊">比熊</option>
+                        <option value="西施">西施 (建議手吹)</option>
+                        <option value="約克夏 (長毛)">約克夏 (長毛)</option>
+                        <option value="阿富汗">阿富汗</option>
+                    </optgroup>
+                    <optgroup label="🐱 【短毛貓】">
+                        <option value="米克斯短毛貓">米克斯短毛貓</option>
+                        <option value="英國短毛貓">英國短毛貓 (英短)</option>
+                        <option value="美國短毛貓">美國短毛貓 (美短)</option>
+                        <option value="曼赤肯">曼赤肯 (短腿貓)</option>
+                        <option value="俄羅斯藍貓">俄羅斯藍貓</option>
+                        <option value="豹貓">豹貓</option>
+                        <option value="加菲貓">加菲貓 (異國短毛貓)</option>
+                    </optgroup>
+                    <optgroup label="🐱 【長毛貓】">
+                        <option value="米克斯長毛貓">米克斯長毛貓</option>
+                        <option value="英國長毛貓">英國長毛貓</option>
+                        <option value="布偶貓">布偶貓</option>
+                        <option value="波斯貓">波斯貓</option>
+                        <option value="緬因貓">緬因貓</option>
+                    </optgroup>
+                </select>
             </div>
-        </div>
-    </div>
 
-    <button class="cta-btn" onclick="switchTab('quote')">
-        立即試用報價工具 →
-    </button>
-
-</div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TAB 2 ─ 報價工具
-══════════════════════════════════════ -->
-<div id="tab-quote" class="tab-panel">
-<div class="quote-wrap">
-
-    <div class="quote-header">
-        <h2>🐾 洗澡報價試算</h2>
-        <p>依序填寫三項資訊，即時取得正確報價</p>
-    </div>
-
-    <!-- STEP 1 -->
-    <div class="card">
-        <div class="card-label">STEP 1 ／ 選擇品種</div>
-        <select id="breed" onchange="updateFromBreed()">
-            <option value="">── 請選擇毛孩品種 ──</option>
-            <optgroup label="【短毛犬】">
-                <option value="短毛吉娃娃">短毛吉娃娃</option>
-                <option value="迷你品">迷你品</option>
-                <option value="短毛臘腸">短毛臘腸</option>
-                <option value="巴哥">巴哥 (建議手吹)</option>
-                <option value="波士頓梗">波士頓梗 (建議手吹)</option>
-                <option value="傑克羅素">傑克羅素</option>
-                <option value="法鬥">法鬥 / 英鬥 (建議手吹)</option>
-                <option value="惡霸犬">惡霸犬 (建議手吹)</option>
-                <option value="牛頭梗">牛頭梗</option>
-                <option value="比特犬">比特犬</option>
-                <option value="米格魯">米格魯</option>
-                <option value="巴吉度">巴吉度</option>
-                <option value="米克斯">米克斯 (短毛)</option>
-                <option value="拉不拉多">拉不拉多</option>
-                <option value="羅威納">羅威納</option>
-                <option value="大麥町">大麥町</option>
-                <option value="杜賓">杜賓</option>
-                <option value="高山犬">高山犬</option>
-                <option value="大丹">大丹</option>
-                <option value="中國冠毛犬">中國冠毛犬</option>
-            </optgroup>
-            <optgroup label="【中長毛犬】">
-                <option value="博美">博美 / 狐狸</option>
-                <option value="雪納瑞">雪納瑞</option>
-                <option value="西高地">西高地</option>
-                <option value="長毛臘腸">長毛臘腸</option>
-                <option value="約克夏 (中長毛)">約克夏 (中長毛)</option>
-                <option value="長毛吉娃娃">長毛吉娃娃</option>
-                <option value="北京犬">北京犬 (建議手吹)</option>
-                <option value="查理士">查理士 (建議手吹)</option>
-                <option value="可卡犬">可卡犬</option>
-                <option value="柴犬">柴犬 / 柯基 / 喜樂蒂</option>
-                <option value="長毛米克斯">長毛米克斯</option>
-                <option value="邊境牧羊犬">邊境牧羊犬</option>
-                <option value="薩摩耶">薩摩耶</option>
-                <option value="哈士奇">哈士奇</option>
-                <option value="黃金獵犬">黃金獵犬 / 秋田 / 鬆獅</option>
-                <option value="德國狼犬">德國狼犬</option>
-                <option value="古代牧羊犬">古代牧羊犬</option>
-                <option value="可麗牧羊犬">可麗牧羊犬</option>
-                <option value="大白熊">大白熊</option>
-                <option value="伯恩山">伯恩山</option>
-                <option value="阿拉斯加">阿拉斯加</option>
-                <option value="高加索">高加索</option>
-                <option value="獒犬">獒犬</option>
-                <option value="聖伯納">聖伯納</option>
-            </optgroup>
-            <optgroup label="【長毛犬】">
-                <option value="瑪爾濟斯">瑪爾濟斯</option>
-                <option value="貴賓">貴賓</option>
-                <option value="比熊">比熊</option>
-                <option value="西施">西施 (建議手吹)</option>
-                <option value="約克夏 (長毛)">約克夏 (長毛)</option>
-                <option value="阿富汗">阿富汗</option>
-            </optgroup>
-            <optgroup label="【短毛貓】">
-                <option value="米克斯短毛貓">米克斯短毛貓</option>
-                <option value="英國短毛貓">英國短毛貓 (英短)</option>
-                <option value="美國短毛貓">美國短毛貓 (美短)</option>
-                <option value="曼赤肯">曼赤肯 (短腿貓)</option>
-                <option value="俄羅斯藍貓">俄羅斯藍貓</option>
-                <option value="豹貓">豹貓</option>
-                <option value="加菲貓">加菲貓 (異國短毛貓)</option>
-            </optgroup>
-            <optgroup label="【長毛貓】">
-                <option value="米克斯長毛貓">米克斯長毛貓</option>
-                <option value="英國長毛貓">英國長毛貓</option>
-                <option value="布偶貓">布偶貓</option>
-                <option value="波斯貓">波斯貓</option>
-                <option value="緬因貓">緬因貓</option>
-            </optgroup>
-        </select>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="card">
-        <div class="card-label">STEP 2 ／ 輸入體長（公分）</div>
-        <div style="font-size:12px; color:#888; margin-bottom:10px;">📏 測量方式：前胸（胸骨）→ 屁股（坐骨）</div>
-        <input type="number" id="lengthCm" oninput="calculatePrice()" placeholder="例如：35（前胸胸骨 → 屁股坐骨）" min="1">
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="card">
-        <div class="card-label">STEP 3 ／ 選擇加購項目（可複選）</div>
-        <select id="addonSelect" onchange="addAddon()">
-            <option value="">── 請選擇加購項目 ──</option>
-            <optgroup label="【單項服務】">
-                <option value="剪指甲">剪指甲</option>
-                <option value="腳底毛">腳底毛</option>
-                <option value="清耳朵">清耳朵</option>
-                <option value="拔耳毛">拔耳毛</option>
-                <option value="剃肚子毛">剃肚子毛</option>
-                <option value="剃肛門毛">剃肛門毛</option>
-                <option value="肛門腺">肛門腺</option>
-                <option value="口腔護理">口腔護理</option>
-                <option value="足部護理">足部護理</option>
-            </optgroup>
-            <optgroup label="【加購護理/SPA】">
-                <option value="薑接spa">薑接SPA</option>
-                <option value="深層皮脂清潔">深層皮脂清潔</option>
-                <option value="驅蚤 犬用/貓用">驅蚤 犬用/貓用</option>
-                <option value="尤加利洗/養護">尤加利洗/養護</option>
-                <option value="喜馬拉雅岩鹽">喜馬拉雅岩鹽</option>
-                <option value="椰子碳酸錠淋浴">椰子碳酸錠淋浴</option>
-                <option value="護膚寶(犬.喵)">護膚寶(犬.喵)</option>
-                <option value="安紅抗癢">安紅抗癢</option>
-                <option value="口腔+足部護理優惠">口腔+足部護理優惠套組</option>
-                <option value="乳酸碳酸錠+護毛優惠套組">乳酸碳酸錠+護毛優惠套組</option>
-            </optgroup>
-            <optgroup label="【造型加價】">
-                <option value="貴賓腳">貴賓腳</option>
-                <option value="貴賓臉">貴賓臉</option>
-                <option value="腳靴">腳靴</option>
-                <option value="腳柱">腳柱</option>
-                <option value="腳球">腳球</option>
-                <option value="頭部修剪">頭部修剪</option>
-                <option value="拆結">拆結</option>
-                <option value="手吹">手吹</option>
-                <option value="特殊造型">特殊造型</option>
-            </optgroup>
-        </select>
-        <div id="addonTags" class="addon-tags"></div>
-    </div>
-
-    <!-- RESULT -->
-    <div class="result-card">
-        <div id="catNoteRow" class="cat-note">🐱 貓咪報價已含手吹費用</div>
-        <div class="result-badges">
-            <div id="hairBadge" class="rbadge warn">請選擇品種</div>
-            <div id="sizeBadge" class="rbadge warn">請輸入體長</div>
-        </div>
-        <div id="addonTotalRow" class="addon-total-row">
-            <span>加購合計</span>
-            <span id="addonTotalBadge">+$ 0</span>
-        </div>
-        <div class="price-row">
-            <div class="price-item">
-                <div class="pl">✨ 洗澡・精緻</div>
-                <div id="priceBasic" class="pv">$ 0</div>
+            <!-- Step 2 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest block mb-2">Step 2 / 輸入體長 (公分)</label>
+                <div class="flex items-center bg-gray-50 border-2 border-gray-100 rounded-xl overflow-hidden focus-within:border-pink-500 transition-all">
+                    <span class="pl-4 text-gray-400">📏</span>
+                    <input type="number" id="lengthCm" oninput="calculate()" placeholder="前胸到坐骨長度" class="w-full p-3 bg-transparent focus:outline-none" min="1">
+                    <span class="pr-4 text-gray-400 text-sm font-bold">cm</span>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-2">※ 前胸（胸骨）→ 屁股（坐骨）</p>
             </div>
-            <div class="price-item">
-                <div class="pl">👑 洗澡・尊爵</div>
-                <div id="pricePremium" class="pv">$ 0</div>
+
+            <!-- Step 3 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest block mb-2">Step 3 / 加購服務</label>
+                <select id="addonSelect" onchange="addAddon()" class="w-full p-3 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-pink-500 focus:outline-none transition-all">
+                    <option value="">── 點擊加入加購項目 ──</option>
+                    <optgroup label="常見單項">
+                        <option value="剪指甲">剪指甲</option>
+                        <option value="腳底毛">腳底毛</option>
+                        <option value="清耳朵">清耳朵</option>
+                        <option value="拔耳毛">拔耳毛</option>
+                        <option value="剃肚子毛">剃肚子毛</option>
+                        <option value="剃肛門毛">剃肛門毛</option>
+                        <option value="肛門腺">肛門腺</option>
+                        <option value="口腔護理">口腔護理</option>
+                        <option value="足部護理">足部護理</option>
+                    </optgroup>
+                    <optgroup label="SPA/功能洗">
+                        <option value="深層皮脂清潔">深層皮脂清潔</option>
+                        <option value="驅蚤 犬用/貓用">驅蚤 犬用/貓用</option>
+                        <option value="尤加利洗/養護">尤加利洗/養護</option>
+                        <option value="椰子碳酸錠淋浴">椰子碳酸錠淋浴</option>
+                        <option value="薄荷/薑接/柑橙spa">薄荷/薑接/柑橙SPA</option>
+                        <option value="牛奶浴">牛奶浴</option>
+                        <option value="喜馬拉雅岩鹽">喜馬拉雅岩鹽</option>
+                        <option value="護膚寶(犬.喵)">護膚寶(犬.喵)</option>
+                        <option value="安紅抗癢">安紅抗癢</option>
+                        <option value="口腔+足部護理優惠">口腔+足部護理優惠套組</option>
+                        <option value="乳酸碳酸錠+護毛優惠套組">乳酸碳酸錠+護毛優惠套組</option>
+                    </optgroup>
+                    <optgroup label="造型/手工">
+                        <option value="手吹">手吹加價</option>
+                        <option value="頭部修剪">頭部修剪</option>
+                        <option value="貴賓腳">貴賓腳</option>
+                        <option value="貴賓臉">貴賓臉</option>
+                        <option value="腳靴">腳靴</option>
+                        <option value="腳柱">腳柱</option>
+                        <option value="腳球">腳球</option>
+                        <option value="拆結">拆結加價</option>
+                        <option value="特殊造型">特殊造型</option>
+                    </optgroup>
+                </select>
+                <div id="addonContainer" class="flex flex-wrap gap-2 mt-4"></div>
             </div>
-        </div>
-    </div>
 
-</div>
-</div>
+            <!-- Result Card -->
+            <div id="resultCard" class="bg-slate-900 rounded-3xl p-6 text-white shadow-2xl space-y-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-xs font-black text-slate-500 uppercase tracking-widest">估價結果</h2>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span id="resSpecies" class="text-lg font-bold">尚未選擇</span>
+                            <span id="resSize" class="bg-slate-700 px-2 py-0.5 rounded text-[10px] font-bold">--</span>
+                        </div>
+                    </div>
+                    <div id="resHair" class="bg-pink-600 px-3 py-1 rounded-full text-[11px] font-bold">--</div>
+                </div>
 
-<!-- ══════════════════════════════════════
-     TAB 3 ─ 使用指引
-══════════════════════════════════════ -->
-<div id="tab-tips" class="tab-panel">
-<div class="tips-wrap">
+                <div id="catAlert" class="hidden bg-pink-900/40 border border-pink-700 p-3 rounded-xl text-[11px] text-pink-200">
+                    🐱 貓咪提醒：貓咪洗澡建議加購「手吹」服務，以降低毛孩緊迫風險。
+                </div>
 
-    <h2>📌 各門市使用指引</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center">
+                        <p class="text-[10px] text-slate-400 font-bold mb-1">✨ 精緻洗澡</p>
+                        <p id="priceBasic" class="text-2xl font-black text-yellow-400">$0</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center">
+                        <p class="text-[10px] text-slate-400 font-bold mb-1">👑 尊爵洗澡</p>
+                        <p id="pricePremium" class="text-2xl font-black text-pink-400">$0</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center">
+                        <p class="text-[10px] text-slate-400 font-bold mb-1">✂️ 半手剪 (含精緻洗)</p>
+                        <p id="priceHalfCut" class="text-2xl font-black text-emerald-400">$0</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center">
+                        <p class="text-[10px] text-slate-400 font-bold mb-1">🌟 全手剪 (含精緻洗)</p>
+                        <p id="priceFullCut" class="text-2xl font-black text-purple-400">$0</p>
+                    </div>
+                </div>
 
-    <div class="tip-card red">
-        <h4>⚠️ 報價前必確認：體長測量方式</h4>
-        <p>從<strong>前胸（胸骨）量至屁股（坐骨）</strong>，不含頭頸與尾巴。<br>
-        站姿或自然趴姿皆可，同一品種體型差異大時，以實測為準，不可只憑品種判斷。</p>
-    </div>
+                <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] text-slate-400">加購小計</p>
+                        <p id="addonSubtotal" class="font-bold text-sm">+$0</p>
+                    </div>
+                    <button onclick="copyQuote()" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl text-xs font-bold transition-all">
+                        📋 複製報價文字
+                    </button>
+                </div>
+            </div>
+            
+            <textarea id="copyHelper" class="fixed -left-[9999px]"></textarea>
+            <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-black/80 text-white px-6 py-3 rounded-full text-xs font-bold opacity-0 transition-opacity pointer-events-none">已複製報價！</div>
+        </section>
 
-    <div class="tip-card gold">
-        <h4>📏 體型分級對照</h4>
-        <table class="tip-table">
-            <tr><th>體長</th><th>犬類別</th></tr>
-            <tr><td>25cm 以下</td><td>小型犬</td></tr>
-            <tr><td>26–35cm</td><td>中小型犬</td></tr>
-            <tr><td>36–45cm</td><td>中型犬</td></tr>
-            <tr><td>46–55cm</td><td>中大型犬</td></tr>
-            <tr><td>56–65cm</td><td>大型犬</td></tr>
-            <tr><td>66–75cm</td><td>巨型犬</td></tr>
-            <tr><td>76cm 以上</td><td>特大型犬</td></tr>
-        </table>
-    </div>
+        <!-- ════════ TAB 3: 使用指引 ════════ -->
+        <section id="tab-tips" class="tab-content hidden space-y-4">
+            <h2 class="text-xl font-black text-blue-900 mb-4">📌 門市報價準則</h2>
 
-    <div class="tip-card green">
-        <h4>✅ 貓咪報價注意事項</h4>
-        <ul>
-            <li>貓咪報價「已含」手吹費，請勿另外加收</li>
-            <li>貴賓腳、貴賓臉、腳靴、腳柱、腳球──不適用貓咪</li>
-            <li>系統會自動反灰無法選取，雙重防錯</li>
-        </ul>
-    </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <h4 class="font-black text-red-600 flex items-center mb-3">
+                    <span class="mr-2">📏</span> 唯一標準：前胸到坐骨
+                </h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    禁止以「目測」或「大約」報價。請在櫃檯準備軟尺，當著客人的面測量：<br>
+                    <strong>胸骨前緣 ➜ 坐骨後緣</strong>（不含頭部與尾巴）。
+                </p>
+            </div>
 
-    <div class="tip-card">
-        <h4>💬 顧客投訴預防話術</h4>
-        <p>「我們使用統一的電子報價系統，依體長與毛髮類型計算，
-        每位毛孩的費用都是即時試算，確保每個門市標準一致。」</p>
-    </div>
+            <h4 class="font-black text-blue-900 mt-2 flex items-center text-sm">🐶 犬隻體型標準</h4>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">小型</span>
+                    <span class="font-black text-blue-600 text-sm">25cm 以下</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">中小型</span>
+                    <span class="font-black text-blue-600 text-sm">26 - 35cm</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">中型</span>
+                    <span class="font-black text-blue-600 text-sm">36 - 45cm</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">中大型</span>
+                    <span class="font-black text-blue-600 text-sm">46 - 55cm</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">大型</span>
+                    <span class="font-black text-blue-600 text-sm">56 - 65cm</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-blue-900 text-sm">巨型</span>
+                    <span class="font-black text-blue-600 text-sm">66 - 75cm</span>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl flex justify-between items-center col-span-2">
+                    <span class="font-bold text-blue-900 text-sm">特大型</span>
+                    <span class="font-black text-blue-600 text-sm">76cm 以上</span>
+                </div>
+            </div>
 
-    <div class="tip-card red">
-        <h4>🔄 常見錯誤 NG 行為</h4>
-        <ul style="list-style:none;">
-            <li style="color:#c62828;">✗ 憑印象報價，未確認體長</li>
-            <li style="color:#c62828;">✗ 貓咪報價再另加手吹費</li>
-            <li style="color:#c62828;">✗ 加購項目口頭估算未顯示金額</li>
-            <li style="color:#c62828;">✗ 報了精緻班卻收尊爵班費用</li>
-        </ul>
-    </div>
+            <h4 class="font-black text-pink-900 mt-4 flex items-center text-sm">🐱 貓咪體型標準</h4>
+            <div class="grid grid-cols-3 gap-3 mb-2">
+                <div class="bg-pink-50 border border-pink-100 p-3 rounded-xl flex flex-col justify-center items-center text-center">
+                    <span class="font-bold text-pink-900 text-sm mb-1">小型</span>
+                    <span class="font-black text-pink-600 text-[11px]">25cm 以下</span>
+                </div>
+                <div class="bg-pink-50 border border-pink-100 p-3 rounded-xl flex flex-col justify-center items-center text-center">
+                    <span class="font-bold text-pink-900 text-sm mb-1">中型</span>
+                    <span class="font-black text-pink-600 text-[11px]">26 - 40cm</span>
+                </div>
+                <div class="bg-pink-50 border border-pink-100 p-3 rounded-xl flex flex-col justify-center items-center text-center">
+                    <span class="font-bold text-pink-900 text-sm mb-1">大型</span>
+                    <span class="font-black text-pink-600 text-[11px]">41cm 以上</span>
+                </div>
+            </div>
 
-</div>
-</div>
+            <div class="bg-pink-50 p-5 rounded-2xl">
+                <h4 class="font-black text-pink-700 flex items-center mb-2">
+                    <span class="mr-2">🐱</span> 貓咪服務禁忌
+                </h4>
+                <ul class="text-xs text-pink-600 space-y-2">
+                    <li>• <strong>不提供：</strong> 貴賓腳、靴型腳、複雜造型、頭部修剪。</li>
+                    <li>• <strong>建議手吹：</strong> 貓咪極度建議加購「手吹」，減少烘箱緊迫與受傷風險。</li>
+                    <li>• <strong>行為費：</strong> 若貓咪攻擊性強需兩人服務，請現場與美容師確認加價。</li>
+                </ul>
+            </div>
+        </section>
 
-<!-- ═══════════════ SCRIPT ═══════════════ -->
-<script>
-function switchTab(id) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
-}
+    </main>
 
-const breedData = {
-    "短毛吉娃娃": { hair: "short", defaultSize: "small" },
-    "迷你品": { hair: "short", defaultSize: "small" },
-    "短毛臘腸": { hair: "short", defaultSize: "med_small" },
-    "巴哥": { hair: "short", defaultSize: "med_small" },
-    "波士頓梗": { hair: "short", defaultSize: "med_small" },
-    "傑克羅素": { hair: "short", defaultSize: "med_small" },
-    "法鬥": { hair: "short", defaultSize: "medium" },
-    "惡霸犬": { hair: "short", defaultSize: "medium" },
-    "牛頭梗": { hair: "short", defaultSize: "medium" },
-    "比特犬": { hair: "short", defaultSize: "medium" },
-    "米格魯": { hair: "short", defaultSize: "medium" },
-    "巴吉度": { hair: "short", defaultSize: "medium" },
-    "米克斯": { hair: "short", defaultSize: "medium" },
-    "拉不拉多": { hair: "short", defaultSize: "large" },
-    "羅威納": { hair: "short", defaultSize: "large" },
-    "大麥町": { hair: "short", defaultSize: "large" },
-    "杜賓": { hair: "short", defaultSize: "large" },
-    "高山犬": { hair: "short", defaultSize: "large" },
-    "大丹": { hair: "short", defaultSize: "super_giant" },
-    "中國冠毛犬": { hair: "short", defaultSize: "small" },
-    "博美": { hair: "med_long", defaultSize: "med_small" },
-    "雪納瑞": { hair: "med_long", defaultSize: "med_small" },
-    "西高地": { hair: "med_long", defaultSize: "med_small" },
-    "長毛臘腸": { hair: "med_long", defaultSize: "med_small" },
-    "約克夏 (中長毛)": { hair: "med_long", defaultSize: "small" },
-    "長毛吉娃娃": { hair: "med_long", defaultSize: "small" },
-    "北京犬": { hair: "med_long", defaultSize: "small" },
-    "查理士": { hair: "med_long", defaultSize: "med_small" },
-    "可卡犬": { hair: "med_long", defaultSize: "medium" },
-    "柴犬": { hair: "med_long", defaultSize: "medium" },
-    "長毛米克斯": { hair: "med_long", defaultSize: "medium" },
-    "邊境牧羊犬": { hair: "med_long", defaultSize: "med_large" },
-    "薩摩耶": { hair: "med_long", defaultSize: "large" },
-    "哈士奇": { hair: "med_long", defaultSize: "large" },
-    "黃金獵犬": { hair: "med_long", defaultSize: "large" },
-    "德國狼犬": { hair: "med_long", defaultSize: "large" },
-    "古代牧羊犬": { hair: "med_long", defaultSize: "large" },
-    "可麗牧羊犬": { hair: "med_long", defaultSize: "large" },
-    "大白熊": { hair: "med_long", defaultSize: "giant" },
-    "伯恩山": { hair: "med_long", defaultSize: "large" },
-    "阿拉斯加": { hair: "med_long", defaultSize: "large" },
-    "高加索": { hair: "med_long", defaultSize: "super_giant" },
-    "獒犬": { hair: "med_long", defaultSize: "super_giant" },
-    "聖伯納": { hair: "med_long", defaultSize: "super_giant" },
-    "瑪爾濟斯": { hair: "long", defaultSize: "small" },
-    "貴賓": { hair: "long", defaultSize: "small" },
-    "比熊": { hair: "long", defaultSize: "small" },
-    "西施": { hair: "long", defaultSize: "small" },
-    "約克夏 (長毛)": { hair: "long", defaultSize: "small" },
-    "阿富汗": { hair: "long", defaultSize: "med_large" },
-    "米克斯短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "英國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "美國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "曼赤肯": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "俄羅斯藍貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "豹貓": { hair: "short", defaultSize: "cat_medium", species: "cat" },
-    "加菲貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
-    "米克斯長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
-    "英國長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
-    "布偶貓": { hair: "long", defaultSize: "cat_medium", species: "cat" },
-    "波斯貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
-    "緬因貓": { hair: "long", defaultSize: "cat_large", species: "cat" }
-};
+    <script>
+        // 切換分頁
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-gray-500');
+            });
+            document.getElementById('tab-' + id).classList.remove('hidden');
+            document.getElementById('tab-btn-' + id).classList.add('tab-active');
+            document.getElementById('tab-btn-' + id).classList.remove('text-gray-500');
+        }
 
-const averageLengthMap = {
-    "small": 22, "med_small": 32, "medium": 42, "med_large": 52,
-    "large": 62, "giant": 72, "super_giant": 85,
-    "cat_small": 22, "cat_medium": 32, "cat_large": 45
-};
+        // 完全還原最原始、最精確的報價與體型判斷邏輯
+        const breedData = {
+            "短毛吉娃娃": { hair: "short", defaultSize: "small" },
+            "迷你品": { hair: "short", defaultSize: "small" },
+            "短毛臘腸": { hair: "short", defaultSize: "med_small" },
+            "巴哥": { hair: "short", defaultSize: "med_small" },
+            "波士頓梗": { hair: "short", defaultSize: "med_small" },
+            "傑克羅素": { hair: "short", defaultSize: "med_small" },
+            "法鬥": { hair: "short", defaultSize: "medium" },
+            "惡霸犬": { hair: "short", defaultSize: "medium" },
+            "牛頭梗": { hair: "short", defaultSize: "medium" },
+            "比特犬": { hair: "short", defaultSize: "medium" },
+            "米格魯": { hair: "short", defaultSize: "medium" },
+            "巴吉度": { hair: "short", defaultSize: "medium" },
+            "短毛米克斯": { hair: "short", defaultSize: "medium" },
+            "拉不拉多": { hair: "short", defaultSize: "large" },
+            "羅威納": { hair: "short", defaultSize: "large" },
+            "大麥町": { hair: "short", defaultSize: "large" },
+            "杜賓": { hair: "short", defaultSize: "large" },
+            "高山犬": { hair: "short", defaultSize: "large" },
+            "大丹": { hair: "short", defaultSize: "super_giant" },
+            "中國冠毛犬": { hair: "short", defaultSize: "small" },
+            "博美": { hair: "med_long", defaultSize: "med_small" },
+            "雪納瑞": { hair: "med_long", defaultSize: "med_small" },
+            "西高地": { hair: "med_long", defaultSize: "med_small" },
+            "長毛臘腸": { hair: "med_long", defaultSize: "med_small" },
+            "長毛吉娃娃": { hair: "med_long", defaultSize: "small" },
+            "北京犬": { hair: "med_long", defaultSize: "small" },
+            "查理士": { hair: "med_long", defaultSize: "med_small" },
+            "可卡犬": { hair: "med_long", defaultSize: "medium" },
+            "柴犬": { hair: "med_long", defaultSize: "medium" },
+            "長毛米克斯": { hair: "med_long", defaultSize: "medium" },
+            "邊境牧羊犬": { hair: "med_long", defaultSize: "med_large" },
+            "薩摩耶": { hair: "med_long", defaultSize: "large" },
+            "哈士奇": { hair: "med_long", defaultSize: "large" },
+            "黃金獵犬": { hair: "med_long", defaultSize: "large" },
+            "德國狼犬": { hair: "med_long", defaultSize: "large" },
+            "古代牧羊犬": { hair: "med_long", defaultSize: "large" },
+            "可麗牧羊犬": { hair: "med_long", defaultSize: "large" },
+            "大白熊": { hair: "med_long", defaultSize: "giant" },
+            "伯恩山": { hair: "med_long", defaultSize: "large" },
+            "阿拉斯加": { hair: "med_long", defaultSize: "large" },
+            "高加索": { hair: "med_long", defaultSize: "super_giant" },
+            "獒犬": { hair: "med_long", defaultSize: "super_giant" },
+            "聖伯納": { hair: "med_long", defaultSize: "super_giant" },
+            "瑪爾濟斯": { hair: "long", defaultSize: "small" },
+            "貴賓": { hair: "long", defaultSize: "small" },
+            "比熊": { hair: "long", defaultSize: "small" },
+            "西施": { hair: "long", defaultSize: "small" },
+            "約克夏 (長毛)": { hair: "long", defaultSize: "small" },
+            "阿富汗": { hair: "long", defaultSize: "med_large" },
+            "米克斯短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "英國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "美國短毛貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "曼赤肯": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "俄羅斯藍貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "豹貓": { hair: "short", defaultSize: "cat_medium", species: "cat" },
+            "加菲貓": { hair: "short", defaultSize: "cat_small", species: "cat" },
+            "米克斯長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+            "英國長毛貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+            "布偶貓": { hair: "long", defaultSize: "cat_medium", species: "cat" },
+            "波斯貓": { hair: "long", defaultSize: "cat_small", species: "cat" },
+            "緬因貓": { hair: "long", defaultSize: "cat_large", species: "cat" }
+        };
 
-const priceMatrix = {
-    "small": { "short": [350, 650], "med_long": [400, 700], "long": [450, 750] },
-    "med_small": { "short": [400, 700], "med_long": [450, 750], "long": [500, 800] },
-    "medium": { "short": [500, 950], "med_long": [600, 1000], "long": [700, 1100] },
-    "med_large": { "short": [700, 1100], "med_long": [800, 1200], "long": [1000, 1300] },
-    "large": { "short": [1000, 1500], "med_long": [1100, 1600], "long": [1300, 1800] },
-    "giant": { "short": [1200, 1700], "med_long": [1500, 2000], "long": [2000, 2500] },
-    "super_giant": { "short": [1500, 2100], "med_long": [2000, 2500], "long": [2500, 3200] },
-    "cat_small": { "short": [650, 1150], "med_long": [750, 1250], "long": [750, 1250] },
-    "cat_medium": { "short": [1000, 1400], "med_long": [1200, 1600], "long": [1200, 1600] },
-    "cat_large": { "short": [1200, 1600], "med_long": [1400, 1800], "long": [1400, 1800] }
-};
+        const averageLengthMap = {
+            "small": 22, "med_small": 32, "medium": 42, "med_large": 52,
+            "large": 62, "giant": 72, "super_giant": 85,
+            "cat_small": 22, "cat_medium": 32, "cat_large": 45
+        };
 
-const hairLabels = { "short": "短毛", "med_long": "中長毛", "long": "長毛" };
-const sizeLabels = {
-    "small": "犬・小型", "med_small": "犬・中小型", "medium": "犬・中型",
-    "med_large": "犬・中大型", "large": "犬・大型", "giant": "犬・巨型", "super_giant": "犬・特大型",
-    "cat_small": "貓・小型", "cat_medium": "貓・中型", "cat_large": "貓・大型"
-};
-const invalidCatStyling = ["貴賓腳", "貴賓臉", "腳靴", "腳柱", "腳球"];
+        // 貓咪洗澡價格已全面扣除手吹費用 (小型貓-150, 中/大型貓-200)
+        const priceMatrix = {
+            "small": { "short": [350, 650], "med_long": [400, 700], "long": [450, 750] },
+            "med_small": { "short": [400, 700], "med_long": [450, 750], "long": [500, 800] },
+            "medium": { "short": [500, 950], "med_long": [600, 1000], "long": [700, 1100] },
+            "med_large": { "short": [700, 1100], "med_long": [800, 1200], "long": [1000, 1300] },
+            "large": { "short": [1000, 1500], "med_long": [1100, 1600], "long": [1300, 1800] },
+            "giant": { "short": [1200, 1700], "med_long": [1500, 2000], "long": [2000, 2500] },
+            "super_giant": { "short": [1500, 2100], "med_long": [2000, 2500], "long": [2500, 3200] },
+            "cat_small": { "short": [500, 1000], "med_long": [600, 1100], "long": [600, 1100] },
+            "cat_medium": { "short": [800, 1200], "med_long": [1000, 1400], "long": [1000, 1400] },
+            "cat_large": { "short": [1000, 1400], "med_long": [1200, 1600], "long": [1200, 1600] }
+        };
 
-let currentHairType = "";
-let currentSpecies = "dog";
-let selectedAddons = [];
+        const hairLabels = { "short": "短毛", "med_long": "中長毛", "long": "長毛" };
+        const sizeLabels = {
+            "small": "犬・小型", "med_small": "犬・中小型", "medium": "犬・中型",
+            "med_large": "犬・中大型", "large": "犬・大型", "giant": "犬・巨型", "super_giant": "犬・特大型",
+            "cat_small": "貓・小型", "cat_medium": "貓・中型", "cat_large": "貓・大型"
+        };
+        const invalidCatStyling = ["貴賓腳", "貴賓臉", "腳靴", "腳柱", "腳球", "頭部修剪"];
 
-function getAddonPrice(addonName, sizeCategory) {
-    const isMedium = sizeCategory === "medium";
-    const isMedLarge = sizeCategory === "med_large";
-    const isLargeOrAbove = ["large", "giant", "super_giant"].includes(sizeCategory);
-    const isGiantOrAbove = ["giant", "super_giant"].includes(sizeCategory);
-    const isSuperGiant = sizeCategory === "super_giant";
-    const isMedLargeOrAbove = isMedLarge || isLargeOrAbove;
-    const isMediumOrAbove = isMedium || isMedLargeOrAbove;
-    const isCat = sizeCategory.startsWith("cat_");
+        let currentHairType = "";
+        let currentSpecies = "dog";
+        let selectedAddons = [];
 
-    if (["拆結", "特殊造型"].includes(addonName)) return 100;
-    if (addonName === "口腔+足部護理優惠") return 129;
+        function getSizeCategoryByCm(cm, species) {
+            if (species === "cat") {
+                if (cm <= 25) return "cat_small";
+                if (cm <= 40) return "cat_medium";
+                return "cat_large";
+            }
+            if (cm <= 25) return "small";
+            if (cm <= 35) return "med_small";
+            if (cm <= 45) return "medium";
+            if (cm <= 55) return "med_large";
+            if (cm <= 65) return "large";
+            if (cm <= 75) return "giant";
+            return "super_giant";
+        }
 
-    if (isCat) {
-        if (invalidCatStyling.includes(addonName)) return 0;
-        if (["腳底毛", "足部護理"].includes(addonName)) return 150;
-        if (["剃肚子毛", "椰子碳酸錠淋浴"].includes(addonName)) return 200;
-        if (addonName === "剃肛門毛") return 100;
-        if (addonName === "乳酸碳酸錠+護毛優惠套組") return 239;
-        if (addonName === "手吹") return (sizeCategory !== "cat_small") ? 200 : 150;
-        if (addonName === "頭部修剪") return (sizeCategory !== "cat_small") ? 350 : 100;
-        if (addonName === "薑接spa") return sizeCategory === "cat_large" ? 400 : 300;
-        const standardCat = ["深層皮脂清潔","驅蚤 犬用/貓用","尤加利洗/養護","喜馬拉雅岩鹽","護膚寶(犬.喵)","安紅抗癢"];
-        if (standardCat.includes(addonName)) return 150;
-    }
+        // 精準還原複雜的加購服務定價邏輯
+        function getAddonPrice(addonName, sizeCategory) {
+            const isMedium = sizeCategory === "medium";
+            const isMedLarge = sizeCategory === "med_large";
+            const isLargeOrAbove = ["large", "giant", "super_giant"].includes(sizeCategory);
+            const isGiantOrAbove = ["giant", "super_giant"].includes(sizeCategory);
+            const isSuperGiant = sizeCategory === "super_giant";
+            const isMedLargeOrAbove = isMedLarge || isLargeOrAbove;
+            const isMediumOrAbove = isMedium || isMedLargeOrAbove;
+            const isCat = sizeCategory.startsWith("cat_");
 
-    const basicItems = ["剪指甲","腳底毛","清耳朵","拔耳毛","剃肚子毛","肛門腺","口腔護理","足部護理"];
-    if (basicItems.includes(addonName)) return isLargeOrAbove ? 150 : 100;
-    if (addonName === "剃肛門毛") return isMedLargeOrAbove ? 100 : 50;
+            if (addonName === "特殊造型") return 100;
+            if (addonName === "拆結") return 0; // 拆結改為現場評估報價，不自動加價
+            if (addonName === "口腔+足部護理優惠") return 129;
 
-    const standardCare = ["深層皮脂清潔","驅蚤 犬用/貓用","尤加利洗/養護","喜馬拉雅岩鹽","護膚寶(犬.喵)","安紅抗癢"];
-    if (standardCare.includes(addonName)) {
-        if (isLargeOrAbove) return 200;
-        if (isMedLarge) return 150;
-        return 100;
-    }
-    if (addonName === "薑接spa") {
-        if (isLargeOrAbove) return 500;
-        if (isMediumOrAbove) return 400;
-        return 300;
-    }
-    if (addonName === "椰子碳酸錠淋浴") {
-        if (isGiantOrAbove) return 400;
-        if (isLargeOrAbove) return 300;
-        if (isMediumOrAbove) return 200;
-        return 150;
-    }
-    if (addonName === "乳酸碳酸錠+護毛優惠套組") {
-        if (isGiantOrAbove) return 339;
-        if (isLargeOrAbove) return 299;
-        if (isMediumOrAbove) return 239;
-        return 199;
-    }
-    if (["貴賓腳","貴賓臉"].includes(addonName)) {
-        if (isLargeOrAbove) return 200;
-        if (isMediumOrAbove) return 150;
-        return 100;
-    }
-    if (addonName === "腳靴") {
-        if (isSuperGiant) return 400;
-        if (isGiantOrAbove) return 300;
-        if (isLargeOrAbove) return 200;
-        if (isMediumOrAbove) return 150;
-        return 100;
-    }
-    if (addonName === "頭部修剪") {
-        if (isSuperGiant) return 300;
-        if (isLargeOrAbove) return 200;
-        if (isMediumOrAbove) return 150;
-        return 100;
-    }
-    if (addonName === "腳柱") {
-        if (isSuperGiant) return 600;
-        if (isGiantOrAbove) return 400;
-        if (isLargeOrAbove) return 350;
-        if (isMedLarge) return 250;
-        if (isMedium) return 200;
-        return 150;
-    }
-    if (addonName === "腳球") {
-        if (isSuperGiant) return 600;
-        if (isGiantOrAbove) return 400;
-        if (isLargeOrAbove) return 250;
-        if (isMedLarge) return 150;
-        return 100;
-    }
-    if (addonName === "手吹") {
-        if (isSuperGiant) return 600;
-        if (isGiantOrAbove) return 400;
-        if (isLargeOrAbove) return 300;
-        if (isMedLarge) return 200;
-        if (isMedium) return 150;
-        return 100;
-    }
-    return 0;
-}
+            if (isCat) {
+                if (invalidCatStyling.includes(addonName)) return 0;
+                if (["腳底毛", "足部護理"].includes(addonName)) return 150;
+                if (["剃肚子毛", "椰子碳酸錠淋浴"].includes(addonName)) return 200;
+                if (addonName === "剃肛門毛") return 100;
+                if (addonName === "乳酸碳酸錠+護毛優惠套組") return 239;
+                if (addonName === "手吹") {
+                    if (sizeCategory === "cat_large") return 0; // 大型貓手吹改為現場評估，不自動加價
+                    return (sizeCategory === "cat_medium") ? 200 : 150;
+                }
+                if (["薄荷/薑接/柑橙spa", "牛奶浴"].includes(addonName)) return sizeCategory === "cat_large" ? 400 : 300;
+                const standardCat = ["深層皮脂清潔","驅蚤 犬用/貓用","尤加利洗/養護","喜馬拉雅岩鹽","護膚寶(犬.喵)","安紅抗癢"];
+                if (standardCat.includes(addonName)) return 150;
+            }
 
-function addAddon() {
-    const select = document.getElementById("addonSelect");
-    const val = select.value;
-    if (val && !selectedAddons.includes(val)) {
-        selectedAddons.push(val);
-        calculatePrice();
-    }
-    select.value = "";
-}
+            const basicItems = ["剪指甲","腳底毛","清耳朵","拔耳毛","剃肚子毛","肛門腺","口腔護理","足部護理"];
+            if (basicItems.includes(addonName)) return isLargeOrAbove ? 150 : 100;
+            if (addonName === "剃肛門毛") return isMedLargeOrAbove ? 100 : 50;
 
-function removeAddon(val) {
-    selectedAddons = selectedAddons.filter(i => i !== val);
-    calculatePrice();
-}
+            const standardCare = ["深層皮脂清潔","驅蚤 犬用/貓用","尤加利洗/養護","喜馬拉雅岩鹽","護膚寶(犬.喵)","安紅抗癢"];
+            if (standardCare.includes(addonName)) {
+                if (isLargeOrAbove) return 200;
+                if (isMedLarge) return 150;
+                return 100;
+            }
+            if (addonName === "薄荷/薑接/柑橙spa") {
+                if (isLargeOrAbove) return 500;
+                if (isMediumOrAbove) return 400;
+                return 300;
+            }
+            if (addonName === "牛奶浴") {
+                if (isGiantOrAbove) return 0; // 巨型犬(含)以上不適用
+                if (isLargeOrAbove) return 500;
+                if (sizeCategory === "medium") return 300;
+                if (isMediumOrAbove) return 400;
+                return 300;
+            }
+            if (addonName === "椰子碳酸錠淋浴") {
+                if (isGiantOrAbove) return 400;
+                if (isLargeOrAbove) return 300;
+                if (isMediumOrAbove) return 200;
+                return 150;
+            }
+            if (addonName === "乳酸碳酸錠+護毛優惠套組") {
+                if (isGiantOrAbove) return 339;
+                if (isLargeOrAbove) return 299;
+                if (isMediumOrAbove) return 239;
+                return 199;
+            }
+            if (["貴賓腳","貴賓臉"].includes(addonName)) {
+                if (isLargeOrAbove) return 200;
+                if (isMediumOrAbove) return 150;
+                return 100;
+            }
+            if (addonName === "腳靴") {
+                if (isSuperGiant) return 400;
+                if (isGiantOrAbove) return 300;
+                if (isLargeOrAbove) return 200;
+                if (isMediumOrAbove) return 150;
+                return 100;
+            }
+            if (addonName === "頭部修剪") {
+                if (isSuperGiant) return 300;
+                if (isLargeOrAbove) return 200;
+                if (isMediumOrAbove) return 150;
+                return 100;
+            }
+            if (addonName === "腳柱") {
+                if (isSuperGiant) return 600;
+                if (isGiantOrAbove) return 400;
+                if (isLargeOrAbove) return 350;
+                if (isMedLarge) return 250;
+                if (isMedium) return 200;
+                return 150;
+            }
+            if (addonName === "腳球") {
+                if (isSuperGiant) return 600;
+                if (isGiantOrAbove) return 400;
+                if (isLargeOrAbove) return 250;
+                if (isMedLarge) return 150;
+                return 100;
+            }
+            if (addonName === "手吹") {
+                if (isSuperGiant) return 600;
+                if (isGiantOrAbove) return 400;
+                if (isLargeOrAbove) return 300;
+                if (isMedLarge) return 200;
+                if (isMedium) return 150;
+                return 100;
+            }
+            return 0;
+        }
 
-function renderAddons(sizeCategory) {
-    const container = document.getElementById("addonTags");
-    container.innerHTML = "";
-    selectedAddons.forEach(val => {
-        const price = getAddonPrice(val, sizeCategory);
-        const suffix = ["拆結","特殊造型"].includes(val) ? " 起" : "";
-        const tag = document.createElement("div");
-        tag.className = "addon-tag";
-        tag.innerHTML = `${val} <small>+$${price}${suffix}</small> <button onclick="removeAddon('${val}')">×</button>`;
-        container.appendChild(tag);
-    });
-}
-
-function getSizeCategoryByCm(cm, species) {
-    if (species === "cat") {
-        if (cm <= 25) return "cat_small";
-        if (cm <= 40) return "cat_medium";
-        return "cat_large";
-    }
-    if (cm <= 25) return "small";
-    if (cm <= 35) return "med_small";
-    if (cm <= 45) return "medium";
-    if (cm <= 55) return "med_large";
-    if (cm <= 65) return "large";
-    if (cm <= 75) return "giant";
-    return "super_giant";
-}
-
-function updateFromBreed() {
-    const val = document.getElementById("breed").value;
-    if (!val) {
-        currentHairType = "";
-        currentSpecies = "dog";
-        document.getElementById("hairBadge").textContent = "請選擇品種";
-        document.getElementById("hairBadge").className = "rbadge warn";
-        document.getElementById("lengthCm").value = "";
-        calculatePrice();
-        return;
-    }
-    const data = breedData[val];
-    currentHairType = data.hair;
-    currentSpecies = data.species || "dog";
-    if (currentSpecies === "cat") {
-        selectedAddons = selectedAddons.filter(i => !invalidCatStyling.includes(i));
-    }
-    const hb = document.getElementById("hairBadge");
-    hb.textContent = hairLabels[currentHairType];
-    hb.className = "rbadge";
-    document.getElementById("lengthCm").value = averageLengthMap[data.defaultSize];
-    calculatePrice();
-}
-
-function calculatePrice() {
-    const cmInput = document.getElementById("lengthCm").value;
-    const sizeBadge = document.getElementById("sizeBadge");
-    const cm = parseInt(cmInput);
-    let sizeCategory = (cm > 0) ? getSizeCategoryByCm(cm, currentSpecies) : (currentSpecies === "cat" ? "cat_small" : "small");
-
-    document.getElementById("catNoteRow").style.display = (currentSpecies === "cat") ? "block" : "none";
-
-    // Update addon select options
-    const select = document.getElementById("addonSelect");
-    for (let i = 0; i < select.options.length; i++) {
-        const opt = select.options[i];
-        const v = opt.value;
-        if (v) {
-            if (currentSpecies === "cat" && invalidCatStyling.includes(v)) {
-                opt.text = `${v} (不適用貓咪)`;
-                opt.disabled = true;
+        function handleBreedChange() {
+            const breedKey = document.getElementById('breed').value;
+            if (breedKey) {
+                const data = breedData[breedKey];
+                currentSpecies = data.species || "dog";
+                currentHairType = data.hair;
+                document.getElementById('lengthCm').value = averageLengthMap[data.defaultSize];
+                
+                // 若切換為貓咪，移除不適用的造型選項
+                if (currentSpecies === "cat") {
+                    selectedAddons = selectedAddons.filter(a => !invalidCatStyling.includes(a));
+                }
             } else {
-                const suffix = ["拆結","特殊造型"].includes(v) ? " 起跳" : "";
-                opt.text = `${v} (+$${getAddonPrice(v, sizeCategory)}${suffix})`;
-                opt.disabled = false;
+                currentSpecies = "dog";
+                currentHairType = "";
+                document.getElementById('lengthCm').value = "";
+            }
+            calculate();
+        }
+
+        function addAddon() {
+            const val = document.getElementById('addonSelect').value;
+            if (val && !selectedAddons.includes(val)) {
+                selectedAddons.push(val);
+                calculate();
+            }
+            document.getElementById('addonSelect').value = "";
+        }
+
+        function removeAddon(addon) {
+            selectedAddons = selectedAddons.filter(a => a !== addon);
+            calculate();
+        }
+
+        function renderAddons(sizeCategory) {
+            const container = document.getElementById('addonContainer');
+            container.innerHTML = "";
+            selectedAddons.forEach(val => {
+                const tag = document.createElement('div');
+                
+                // 替換顯示名稱更直觀
+                let displayName = val;
+                if (val === "手吹") displayName = "手吹加價";
+                if (val === "拆結") displayName = "拆結加價";
+                if (val === "驅蚤 犬用/貓用") displayName = "驅蚤功能洗";
+                
+                // 處理特殊的價錢顯示與排版判定
+                let priceText = `+$${getAddonPrice(val, sizeCategory)}`;
+                let isEval = false; // 紀錄是否需要換行顯示現場評估
+
+                if (val === "手吹" && sizeCategory === "cat_large") {
+                    priceText = "(現場評估報價)";
+                    isEval = true;
+                } else if (val === "拆結") {
+                    priceText = "(依現場評估報價)";
+                    isEval = true;
+                } else {
+                    const suffix = ["特殊造型"].includes(val) ? " 起跳 (依現場評估報價)" : "";
+                    priceText += suffix;
+                    if (val === "特殊造型") isEval = true;
+                }
+                
+                // 根據是否為現場評估，套用不同的標籤排版 (上下 或 左右)
+                if (isEval) {
+                    tag.className = "addon-tag bg-pink-100 text-pink-700 px-3 py-1.5 rounded-lg text-xs font-bold flex flex-col border border-pink-200";
+                    tag.innerHTML = `
+                        <div class="flex justify-between items-center gap-4">
+                            <span>${displayName}</span>
+                            <button onclick="removeAddon('${val}')" class="hover:text-pink-900 font-black">✕</button>
+                        </div>
+                        <span class="text-[10px] font-normal opacity-80 mt-0.5 tracking-wide">${priceText}</span>
+                    `;
+                } else {
+                    tag.className = "addon-tag bg-pink-100 text-pink-700 px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-2 border border-pink-200";
+                    tag.innerHTML = `${displayName} <small>${priceText}</small> <button onclick="removeAddon('${val}')" class="hover:text-pink-900 font-black ml-1">✕</button>`;
+                }
+                
+                container.appendChild(tag);
+            });
+        }
+
+        function calculate() {
+            const breedKey = document.getElementById('breed').value;
+            const cmInput = document.getElementById('lengthCm').value;
+            const cm = parseInt(cmInput) || 0;
+
+            // 未選擇品種時重置畫面
+            if (!breedKey) {
+                document.getElementById('resSpecies').textContent = "尚未選擇";
+                document.getElementById('resSize').textContent = "--";
+                document.getElementById('resHair').textContent = "--";
+                document.getElementById('catAlert').classList.add('hidden');
+                document.getElementById('priceBasic').textContent = "$0";
+                document.getElementById('pricePremium').textContent = "$0";
+                document.getElementById('priceHalfCut').textContent = "$0";
+                document.getElementById('priceFullCut').textContent = "$0";
+                document.getElementById('priceFullCut').className = "text-2xl font-black text-purple-400";
+                document.getElementById('addonSubtotal').textContent = "+$0";
+                document.getElementById('addonContainer').innerHTML = "";
+                
+                const select = document.getElementById('addonSelect');
+                for(let opt of select.options) {
+                    opt.disabled = false;
+                    if (opt.value) opt.text = opt.value.replace(/ \(\+\$.*\)/, "");
+                }
+                return;
+            }
+
+            let sizeCategory = (cm > 0) ? getSizeCategoryByCm(cm, currentSpecies) : (currentSpecies === "cat" ? "cat_small" : "small");
+
+            // 新增防呆：巨型犬(含特大型)不適用牛奶浴，若已選取則自動移除
+            const isGiantOrLargerDog = currentSpecies === "dog" && ["giant", "super_giant"].includes(sizeCategory);
+            if (isGiantOrLargerDog && selectedAddons.includes("牛奶浴")) {
+                selectedAddons = selectedAddons.filter(a => a !== "牛奶浴");
+            }
+
+            // 更新 UI 結果區
+            document.getElementById('resSpecies').textContent = breedKey;
+            document.getElementById('resSize').textContent = sizeLabels[sizeCategory];
+            document.getElementById('resHair').textContent = hairLabels[currentHairType];
+            document.getElementById('catAlert').classList.toggle('hidden', currentSpecies !== "cat");
+
+            // 更新加購選項文字與停用狀態
+            const select = document.getElementById('addonSelect');
+            for (let i = 0; i < select.options.length; i++) {
+                const opt = select.options[i];
+                const v = opt.value;
+                if (v) {
+                    // 基礎顯示名稱替換
+                    let displayName = v;
+                    if (v === "手吹") displayName = "手吹加價";
+                    if (v === "拆結") displayName = "拆結加價";
+                    if (v === "驅蚤 犬用/貓用") displayName = "驅蚤功能洗";
+
+                    if (currentSpecies === "cat" && invalidCatStyling.includes(v)) {
+                        opt.text = `${displayName} (不適用貓咪)`;
+                        opt.disabled = true;
+                    } else if (isGiantOrLargerDog && v === "牛奶浴") {
+                        opt.text = `${displayName} (此項目不適用)`;
+                        opt.disabled = true;
+                    } else {
+                        let priceText = `+$${getAddonPrice(v, sizeCategory)}`;
+                        if (v === "手吹" && sizeCategory === "cat_large") {
+                            priceText = "現場評估報價";
+                        } else if (v === "拆結") {
+                            priceText = "依現場評估報價";
+                        } else {
+                            const suffix = ["特殊造型"].includes(v) ? " 起跳，依現場評估報價" : "";
+                            priceText += suffix;
+                        }
+                        opt.text = `${displayName} (${priceText})`;
+                        opt.disabled = false;
+                    }
+                }
+            }
+
+            renderAddons(sizeCategory);
+
+            const addonTotal = selectedAddons.reduce((sum, val) => sum + getAddonPrice(val, sizeCategory), 0);
+            document.getElementById('addonSubtotal').textContent = `+$${addonTotal.toLocaleString()}`;
+
+            // 若體長未輸入正確
+            if (!currentHairType || !cmInput || cm <= 0) {
+                document.getElementById('priceBasic').textContent = `$${addonTotal.toLocaleString()}`;
+                document.getElementById('pricePremium').textContent = `$${addonTotal.toLocaleString()}`;
+                document.getElementById('priceHalfCut').textContent = `$${addonTotal.toLocaleString()}`;
+                
+                if (currentSpecies === "cat") {
+                    document.getElementById('priceFullCut').textContent = `依現場美容師評估`;
+                    document.getElementById('priceFullCut').className = "font-black text-purple-400 text-base pt-1";
+                } else {
+                    document.getElementById('priceFullCut').textContent = `$${addonTotal.toLocaleString()}`;
+                    document.getElementById('priceFullCut').className = "text-2xl font-black text-purple-400";
+                }
+                return;
+            }
+
+            // 計算最終洗澡金額 (對應到原始陣列)
+            const prices = priceMatrix[sizeCategory][currentHairType];
+            const basicPrice = prices[0];
+            const premiumPrice = prices[1];
+            const halfCutPrice = basicPrice * 2; // 半手剪為精緻洗2倍
+            let fullCutPrice = halfCutPrice + 200; // 全手剪預設為半手剪+200
+
+            if (currentSpecies === "dog") {
+                const isSuperGiant = sizeCategory === "super_giant";
+                const isGiant = sizeCategory === "giant";
+                const isGiantOrLarger = ["giant", "super_giant"].includes(sizeCategory);
+                const isMedLargeOrLarger = ["med_large", "large", "giant", "super_giant"].includes(sizeCategory);
+                const isMediumOrLarger = ["medium", "med_large", "large", "giant", "super_giant"].includes(sizeCategory);
+                const isMedSmallOrLarger = ["med_small", "medium", "med_large", "large", "giant", "super_giant"].includes(sizeCategory);
+                const isMedLongOrLonger = ["med_long", "long"].includes(currentHairType);
+
+                if (isSuperGiant && currentHairType === "short") {
+                    // 針對特大型犬 且 短毛，全手剪變成 半手剪+1500元
+                    fullCutPrice = halfCutPrice + 1500;
+                } else if (isGiant && currentHairType === "short") {
+                    // 針對巨型犬 且 短毛，全手剪變成 半手剪+1100元
+                    fullCutPrice = halfCutPrice + 1100;
+                } else if (isSuperGiant && currentHairType === "long") {
+                    // 針對特大型犬 且 長毛，全手剪固定為 7500 元
+                    fullCutPrice = 7500;
+                } else if (isGiant && currentHairType === "long") {
+                    // 針對巨型犬 且 長毛，全手剪變成 半手剪+2000元
+                    fullCutPrice = halfCutPrice + 2000;
+                } else if (isSuperGiant && currentHairType === "med_long") {
+                    // 針對特大型犬 且 中長毛，全手剪變成 半手剪+2000元
+                    fullCutPrice = halfCutPrice + 2000;
+                } else if (isGiant && currentHairType === "med_long") {
+                    // 針對巨型犬 且 中長毛，全手剪變成 半手剪+1500元
+                    fullCutPrice = halfCutPrice + 1500;
+                } else if (isMedLargeOrLarger) {
+                    // 針對中大型(含)以上體型，全手剪變成 半手剪+400元
+                    fullCutPrice = halfCutPrice + 400;
+                } else if (isMedSmallOrLarger && currentHairType === "short") {
+                    // 針對中小型(含)以上 且 短毛，全手剪變成 半手剪+300元
+                    fullCutPrice = halfCutPrice + 300;
+                } else if (isMedSmallOrLarger && isMedLongOrLonger) {
+                    // 針對中小型或中型 且 中長毛(含)以上，全手剪變成 半手剪+300元
+                    fullCutPrice = halfCutPrice + 300;
+                }
+            }
+
+            document.getElementById('priceBasic').textContent = `$${(basicPrice + addonTotal).toLocaleString()}`;
+            document.getElementById('pricePremium').textContent = `$${(premiumPrice + addonTotal).toLocaleString()}`;
+            document.getElementById('priceHalfCut').textContent = `$${(halfCutPrice + addonTotal).toLocaleString()}`;
+            
+            if (currentSpecies === "cat") {
+                document.getElementById('priceFullCut').textContent = `依現場美容師評估`;
+                document.getElementById('priceFullCut').className = "font-black text-purple-400 text-base pt-1";
+            } else {
+                document.getElementById('priceFullCut').textContent = `$${(fullCutPrice + addonTotal).toLocaleString()}`;
+                document.getElementById('priceFullCut').className = "text-2xl font-black text-purple-400";
             }
         }
-    }
 
-    renderAddons(sizeCategory);
-    const addonTotal = selectedAddons.reduce((s, i) => s + getAddonPrice(i, sizeCategory), 0);
-    const atr = document.getElementById("addonTotalRow");
-    if (addonTotal > 0) {
-        atr.style.display = "flex";
-        document.getElementById("addonTotalBadge").textContent = `+$ ${addonTotal.toLocaleString()}`;
-    } else {
-        atr.style.display = "none";
-    }
+        function copyQuote() {
+            const breed = document.getElementById('breed').value;
+            if (!breed) return;
+            const size = document.getElementById('resSize').textContent;
+            const basic = document.getElementById('priceBasic').textContent;
+            const premium = document.getElementById('pricePremium').textContent;
+            const halfCut = document.getElementById('priceHalfCut').textContent;
+            const fullCut = document.getElementById('priceFullCut').textContent;
+            
+            // 將加購項目轉為易讀文字
+            const readableAddons = selectedAddons.map(val => {
+                if (val === "手吹") {
+                    return size.includes("貓・大型") ? "手吹加價 (現場評估報價)" : "手吹加價";
+                }
+                if (val === "拆結") return "拆結加價 (依現場評估報價)";
+                if (val === "特殊造型") return "特殊造型 (起跳，依現場評估報價)";
+                if (val === "驅蚤 犬用/貓用") return "驅蚤功能洗";
+                return val;
+            });
+            const addons = readableAddons.length > 0 ? `\n- 加購項目: ${readableAddons.join(', ')}` : "";
 
-    if (!currentHairType || !cmInput || cm <= 0) {
-        document.getElementById("priceBasic").textContent = `$ ${addonTotal.toLocaleString()}`;
-        document.getElementById("pricePremium").textContent = `$ ${addonTotal.toLocaleString()}`;
-        sizeBadge.textContent = "請輸入體長";
-        sizeBadge.className = "rbadge warn";
-        return;
-    }
+            const text = `【東森寵物美容報價單】\n- 毛孩品種: ${breed}\n- 體型分級: ${size}${addons}\n------------------\n✨ 精緻洗澡: ${basic}\n👑 尊爵洗澡: ${premium}\n✂️ 半手剪 (含精緻洗): ${halfCut}\n🌟 全手剪 (含精緻洗): ${fullCut}\n------------------\n※ 此為系統預估報價，最終金額以現場實測體長與評估毛況為準。`;
+            
+            const helper = document.getElementById('copyHelper');
+            helper.value = text;
+            helper.select();
+            document.execCommand('copy');
 
-    sizeBadge.textContent = sizeLabels[sizeCategory];
-    sizeBadge.className = "rbadge";
-    const prices = priceMatrix[sizeCategory][currentHairType];
-    document.getElementById("priceBasic").textContent = `$ ${(prices[0] + addonTotal).toLocaleString()}`;
-    document.getElementById("pricePremium").textContent = `$ ${(prices[1] + addonTotal).toLocaleString()}`;
-}
+            const toast = document.getElementById('toast');
+            toast.style.opacity = "1";
+            setTimeout(() => toast.style.opacity = "0", 2000);
+        }
 
-window.onload = calculatePrice;
-</script>
+        // 初始化
+        calculate();
+    </script>
 </body>
 </html>
